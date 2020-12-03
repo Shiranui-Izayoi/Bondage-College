@@ -95,9 +95,17 @@ function SpeechGarble(C, CD) {
 			if (H == "(") Par = true;
 			if (Par) NS = NS + CD.charAt(L);
 			else {
-				if (H == " " || H == "." || H == "?" || H == "!" || H == "~" || H == "-") NS = NS + H;
-				else if (H == "z" || H == "q" || H == "j" || H == "x" || H == "k" || H == "v" || H == "b" || H == "y" || H == "w" || H == "g" || H == "p" || H == "f" || H == "u" || H == "c" || H == "d" || H == "l" || H == "h" || H == "r") NS = NS + " ";
-				else NS = NS + "m";
+				switch(H) {
+					case " ": case ".": case "?": case "!": case "~": case "-": 
+						NS = NS + H;
+						break;
+					case "z": case "q": case "j": case "x": case "k": case "v": case "b": case "y": case "w": case "g": case "p": case "f": case "u": case "c": case "d": case "l": case "h": case "r": 
+						NS = NS + " ";
+						break;
+					default: 
+						NS = NS + "m";
+						break;
+				}
 			}
 
 			if (H == ")") Par = false;
@@ -114,9 +122,17 @@ function SpeechGarble(C, CD) {
 			if (H == "(") Par = true;
 			if (Par) NS = NS + CD.charAt(L);
 			else {
-				if (H == " " || H == "." || H == "?" || H == "!" || H == "~" || H == "-") NS = NS + H;
-				else if (H == "z" || H == "q" || H == "j" || H == "x" || H == "k" || H == "v" || H == "b" || H == "y" || H == "w" || H == "g" || H == "p" || H == "f") NS = NS + " ";
-				else NS = NS + "m";
+				switch(H) {
+					case " ": case ".": case "?": case "!": case "~": case "-": 
+						NS = NS + H;
+						break;
+					case "z": case "q": case "j": case "x": case "k": case "v": case "b": case "y": case "w": case "g": case "p": case "f": 
+						NS = NS + " ";
+						break;
+					default: 
+						NS = NS + "m";
+						break;
+				}
 			}
 
 			if (H == ")") Par = false;
@@ -133,9 +149,17 @@ function SpeechGarble(C, CD) {
 			if (H == "(") Par = true;
 			if (Par) NS = NS + CD.charAt(L);
 			else {
-				if (H == " " || H == "." || H == "?" || H == "!" || H == "~" || H == "-") NS = NS + H;
-				else if (H == "z" || H == "q" || H == "j" || H == "x" || H == "k" || H == "v") NS = NS + " ";
-				else NS = NS + "m";
+				switch(H) {
+					case " ": case ".": case "?": case "!": case "~": case "-": 
+						NS = NS + H;
+						break;
+					case "z": case "q": case "j": case "x": case "k": case "v": 
+						NS = NS + " ";
+						break;
+					default: 
+						NS = NS + "m";
+						break;
+				}
 			}
 
 			if (H == ")") Par = false;
@@ -152,8 +176,14 @@ function SpeechGarble(C, CD) {
 			if (H == "(") Par = true;
 			if (Par) NS = NS + CD.charAt(L);
 			else {
-				if (H == " " || H == "." || H == "?" || H == "!" || H == "~" || H == "-") NS = NS + H;
-				else NS = NS + "m";
+				switch(H) {
+					case " ": case ".": case "?": case "!": case "~": case "-": 
+						NS = NS + H;
+						break;
+					default: 
+						NS = NS + "m";
+						break;
+				}
 			}
 
 			if (H == ")") Par = false;
@@ -166,29 +196,101 @@ function SpeechGarble(C, CD) {
 	// VeryHeavy garble - Close to no letter stays the same
 	if (GagEffect >= 7) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
+			var H = CD.charAt(L);
 			if (H == "(") Par = true;
 			if (!Par) {
+				switch(H) {
 
-				// Regular characters
-				if (H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "y") NS = NS + "e";
-				if (H == "j" || H == "k" || H == "l" || H == "r") NS = NS + "a";
-				if (H == "s" || H == "z" || H == "h") NS = NS + "h";
-				if (H == "d" || H == "f" || H == "g" || H == "n" || H == "m" || H == "w" || H == "t" || H == "c" || H == "q" || H == "x" || H == "p" || H == "v") NS = NS + "m";
-				if (H == " " || H == "." || H == "?" || H == "!" || H == "~" || H == "-" || H == "b") NS = NS + H;
+					// Regular characters
+					case "a": case "e": case "i": case "o": case "u": case "y": 
+						NS = NS + "e";
+						break;
+					case "j": case "k": case "l": case "r": 
+						NS = NS + "a";
+						break;
+					case "s": case "z": case "h": 
+						NS = NS + "h";
+						break;
+					case "d": case "f": case "g": case "n": case "m": case "w": case "t": case "c": case "q": case "x": case "p": case "v": 
+						NS = NS + "m";
+						break;
+					case " ": case ".": case "?": case "!": case "~": case "-": case "b": 
+						NS = NS + H;
+						break;
+					case "A": case "E": case "I": case "O": case "U": case "Y": 
+						NS = NS + "E";
+						break;
+					case "J": case "K": case "L": case "R": 
+						NS = NS + "A";
+						break;
+					case "S": case "Z": case "H": 
+						NS = NS + "H";
+						break;
+					case "D": case "F": case "G": case "N": case "M": case "W": case "T": case "C": case "Q": case "X": case "P": case "V": 
+						NS = NS + "M";
+						break;
+					case "B":
+						NS = NS + H;
+						break;
 
-				// Accents/Latin characters
-				if (H == "á" || H == "â" || H == "à" || H == "é" || H == "ê" || H == "è" || H == "ë" || H == "í" || H == "î" || H == "ì" || H == "ï" || H == "ó" || H == "ô" || H == "ò" || H == "ú" || H == "û" || H == "ù" || H == "ü") NS = NS + "e";
-				if (H == "ç") NS = NS + "h";
-				if (H == "ñ") NS = NS + "m";
+					// Accents/Latin characters
+					case "á": case "â": case "à": case "é": case "ê": case "è": case "ë": case "í": case "î": case "ì": case "ï": case "ó": case "ô": case "ò": case "ú": case "û": case "ù": case "ü": 
+						NS = NS + "e";
+						break;
+					case "ç": 
+						NS = NS + "h";
+						break;
+					case "ñ": 
+						NS = NS + "m";
+						break;
+					case "Á": case "Â": case "À": case "É": case "Ê": case "È": case "Ë": case "Í": case "Î": case "Ì": case "Ï": case "Ó": case "Ô": case "Ò": case "Ú": case "Û": case "Ù": case "Ü": 
+						NS = NS + "E";
+						break;
+					case "Ç": 
+						NS = NS + "H";
+						break;
+					case "Ñ": 
+						NS = NS + "M";
+						break;
 
-				// Cyrillic characters
-				if (H == "а" || H == "е" || H == "и" || H == "о" || H == "у" || H == "ю" || H == "л"|| H == "я") NS = NS + "е";
-				if (H == "с" || H == "й" || H == "х") NS = NS + "к";
-				if (H == "ж" || H == "к" || H == "л" || H == "р" || H == "у") NS = NS + "а";
-				if (H == "з" || H == "с" || H == "г" || H == "й") NS = NS + "г";
-				if (H == "б" || H == "р" || H == "в" || H == "ы") NS = NS + "ф";
-				if (H == "д" || H == "ф" || H == "г" || H == "н" || H == "м") NS = NS + "м";
+					// Cyrillic characters
+					case "а": case "е": case "и": case "о": case "у": case "ю": case "л": case "я": 
+						NS = NS + "е";
+						break;
+					case "с": case "й": case "х": 
+						NS = NS + "к";
+						break;
+					case "ж": case "к": case "л": case "р": case "у": 
+						NS = NS + "а";
+						break;
+					case "з": case "с": case "г": case "й": 
+						NS = NS + "г";
+						break;
+					case "б": case "р": case "в": case "ы": 
+						NS = NS + "ф";
+						break;
+					case "д": case "ф": case "г": case "н": case "м": 
+						NS = NS + "м";
+						break;
+					case "А": case "Е": case "И": case "О": case "У": case "Ю": case "Л": case "Я": 
+						NS = NS + "Е";
+						break;
+					case "С": case "Й": case "Х": 
+						NS = NS + "К";
+						break;
+					case "Ж": case "К": case "Л": case "Р": case "У": 
+						NS = NS + "А";
+						break;
+					case "З": case "С": case "Г": case "Й": 
+						NS = NS + "Г";
+						break;
+					case "Б": case "Р": case "В": case "Ы": 
+						NS = NS + "Ф";
+						break;
+					case "Д": case "Ф": case "Г": case "Н": case "М": 
+						NS = NS + "М";
+						break;
+				}
 
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
@@ -201,31 +303,110 @@ function SpeechGarble(C, CD) {
 	// Heavy garble - Almost no letter stays the same
 	if ((GagEffect >= 6) || ((C.ID != 0) && (Player.GetDeafLevel() >= 3))) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
+			var H = CD.charAt(L);
 			if (H == "(") Par = true;
 			if (!Par) {
+				switch(H) {
 
-				// Regular characters
-				if (H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "y" || H == "t") NS = NS + "e";
-				if (H == "c" || H == "q" || H == "x") NS = NS + "k";
-				if (H == "j" || H == "k" || H == "l" || H == "r" || H == "w") NS = NS + "a";
-				if (H == "s" || H == "z" || H == "h") NS = NS + "h";
-				if (H == "b" || H == "p" || H == "v") NS = NS + "f";
-				if (H == "d" || H == "f" || H == "g" || H == "n" || H == "m") NS = NS + "m";
-				if (H == " " || H == "." || H == "?" || H == "!" || H == "~" || H == "-") NS = NS + H;
+					// Regular characters
+					case "a": case "e": case "i": case "o": case "u": case "y": case "t": 
+						NS = NS + "e";
+						break;
+					case "c": case "q": case "x": 
+						NS = NS + "k";
+						break;
+					case "j": case "k": case "l": case "r": case "w": 
+						NS = NS + "a";
+						break;
+					case "s": case "z": case "h": 
+						NS = NS + "h";
+						break;
+					case "b": case "p": case "v": 
+						NS = NS + "f";
+						break;
+					case "d": case "f": case "g": case "n": case "m": 
+						NS = NS + "m";
+						break;
+					case " ": case ".": case "?": case "!": case "~": case "-": 
+						NS = NS + H;
+						break;
+					case "A": case "E": case "I": case "O": case "U": case "Y": case "T": 
+						NS = NS + "E";
+						break;
+					case "C": case "Q": case "X": 
+						NS = NS + "K";
+						break;
+					case "J": case "K": case "L": case "R": case "W": 
+						NS = NS + "A";
+						break;
+					case "S": case "Z": case "H": 
+						NS = NS + "H";
+						break;
+					case "B": case "P": case "V": 
+						NS = NS + "F";
+						break;
+					case "D": case "F": case "G": case "N": case "M": 
+						NS = NS + "M";
+						break;
 
-				// Accents/Latin characters
-				if (H == "á" || H == "â" || H == "à" || H == "é" || H == "ê" || H == "è" || H == "ë" || H == "í" || H == "î" || H == "ì" || H == "ï" || H == "ó" || H == "ô" || H == "ò" || H == "ú" || H == "û" || H == "ù" || H == "ü") NS = NS + "e";
-				if (H == "ç") NS = NS + "h";
-				if (H == "ñ") NS = NS + "m";
+					// Accents/Latin characters
+					case "á": case "â": case "à": case "é": case "ê": case "è": case "ë": case "í": case "î": case "ì": case "ï": case "ó": case "ô": case "ò": case "ú": case "û": case "ù": case "ü": 
+						NS = NS + "e";
+						break;
+					case "ç": 
+						NS = NS + "h";
+						break;
+					case "ñ": 
+						NS = NS + "m";
+						break;
+					case "Á": case "Â": case "À": case "É": case "Ê": case "È": case "Ë": case "Í": case "Î": case "Ì": case "Ï": case "Ó": case "Ô": case "Ò": case "Ú": case "Û": case "Ù": case "Ü": 
+						NS = NS + "E";
+						break;
+					case "Ç": 
+						NS = NS + "H";
+						break;
+					case "Ñ": 
+						NS = NS + "M";
+						break;
 
-				// Cyrillic characters
-				if (H == "а" || H == "е" || H == "и" || H == "о" || H == "у" || H == "ю" || H == "л"|| H == "я") NS = NS + "е";
-				if (H == "с" || H == "й" || H == "х") NS = NS + "к";
-				if (H == "ж" || H == "к" || H == "л" || H == "р" || H == "у") NS = NS + "а";
-				if (H == "з" || H == "с" || H == "г" || H == "й") NS = NS + "г";
-				if (H == "б" || H == "р" || H == "в" || H == "ы") NS = NS + "ф";
-				if (H == "д" || H == "ф" || H == "г" || H == "н" || H == "м") NS = NS + "м";
+					// Cyrillic characters
+					case "а": case "е": case "и": case "о": case "у": case "ю": case "л": case "я": 
+						NS = NS + "е";
+						break;
+					case "с": case "й": case "х": 
+						NS = NS + "к";
+						break;
+					case "ж": case "к": case "л": case "р": case "у": 
+						NS = NS + "а";
+						break;
+					case "з": case "с": case "г": case "й": 
+						NS = NS + "г";
+						break;
+					case "б": case "р": case "в": case "ы": 
+						NS = NS + "ф";
+						break;
+					case "д": case "ф": case "г": case "н": case "м": 
+						NS = NS + "м";
+						break;
+					case "А": case "Е": case "И": case "О": case "У": case "Ю": case "Л": case "Я": 
+						NS = NS + "Е";
+						break;
+					case "С": case "Й": case "Х": 
+						NS = NS + "К";
+						break;
+					case "Ж": case "К": case "Л": case "Р": case "У": 
+						NS = NS + "А";
+						break;
+					case "З": case "С": case "Г": case "Й": 
+						NS = NS + "Г";
+						break;
+					case "Б": case "Р": case "В": case "Ы": 
+						NS = NS + "Ф";
+						break;
+					case "Д": case "Ф": case "Г": case "Н": case "М": 
+						NS = NS + "М";
+						break;
+				}
 
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
@@ -238,31 +419,113 @@ function SpeechGarble(C, CD) {
 	// Medium garble - Some letters stays the same
 	if (GagEffect >= 5) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
+			var H = CD.charAt(L);
 			if (H == "(") Par = true;
 			if (!Par) {
+				switch(H) {
 
-				// Regular characters
-				if (H == "e" || H == "i" || H == "o" || H == "u" || H == "y" || H == "t") NS = NS + "e";
-				if (H == "c" || H == "q" || H == "x" || H == "k" ) NS = NS + "k";
-				if (H == "j" || H == "l" || H == "r" || H == "w" || H == "a") NS = NS + "a";
-				if (H == "s" || H == "z" || H == "h") NS = NS + "h";
-				if (H == "b" || H == "p" || H == "v") NS = NS + "f";
-				if (H == "d" || H == "f" || H == "g" || H == "m") NS = NS + "m";
-				if (H == " " || H == "." || H == "?" || H == "!" || H == "~" || H == "-" || H == "n") NS = NS + H;
+					// Regular characters
+					case "e": case "i": case "o": case "u": case "y": case "t": 
+						NS = NS + "e";
+						break;
+					case "c": case "q": case "x": case "k": 
+						NS = NS + "k";
+						break;
+					case "j": case "l": case "r": case "w": case "a": 
+						NS = NS + "a";
+						break;
+					case "s": case "z": case "h": 
+						NS = NS + "h";
+						break;
+					case "b": case "p": case "v": 
+						NS = NS + "f";
+						break;
+					case "d": case "f": case "g": case "m": 
+						NS = NS + "m";
+						break;
+					case "n": case " ": case ".": case "?": case "!": case "~": case "-":
+						NS = NS + H;
+						break;
+					case "E": case "I": case "O": case "U": case "Y": case "T": 
+						NS = NS + "E";
+						break;
+					case "C": case "Q": case "X": case "K": 
+						NS = NS + "K";
+						break;
+					case "J": case "L": case "R": case "W": case "A": 
+						NS = NS + "A";
+						break;
+					case "S": case "Z": case "H": 
+						NS = NS + "H";
+						break;
+					case "B": case "P": case "V": 
+						NS = NS + "F";
+						break;
+					case "D": case "F": case "G": case "M": 
+						NS = NS + "M";
+						break;
+					case "N": 
+						NS = NS + H;
+						break;
 
-				// Accents/Latin characters
-				if (H == "á" || H == "â" || H == "à" || H == "é" || H == "ê" || H == "è" || H == "ë" || H == "í" || H == "î" || H == "ì" || H == "ï" || H == "ó" || H == "ô" || H == "ò" || H == "ú" || H == "û" || H == "ù" || H == "ü") NS = NS + "e";
-				if (H == "ç") NS = NS + "h";
-				if (H == "ñ") NS = NS + "m";
+					// Accents/Latin characters
+					case "á": case "â": case "à": case "é": case "ê": case "è": case "ë": case "í": case "î": case "ì": case "ï": case "ó": case "ô": case "ò": case "ú": case "û": case "ù": case "ü": 
+						NS = NS + "e";
+						break;
+					case "ç": 
+						NS = NS + "h";
+						break;
+					case "ñ": 
+						NS = NS + "m";
+						break;
+					case "Á": case "Â": case "À": case "É": case "Ê": case "È": case "Ë": case "Í": case "Î": case "Ì": case "Ï": case "Ó": case "Ô": case "Ò": case "Ú": case "Û": case "Ù": case "Ü": 
+						NS = NS + "E";
+						break;
+					case "Ç": 
+						NS = NS + "H";
+						break;
+					case "Ñ": 
+						NS = NS + "M";
+						break;
 
-				// Cyrillic characters
-				if (H == "а" || H == "е" || H == "и" || H == "о" || H == "у" || H == "ю" || H == "л"|| H == "я") NS = NS + "е";
-				if (H == "с" || H == "й" || H == "х") NS = NS + "к";
-				if (H == "ж" || H == "к" || H == "л" || H == "р" || H == "у") NS = NS + "а";
-				if (H == "з" || H == "с" || H == "г" || H == "й") NS = NS + "г";
-				if (H == "б" || H == "р" || H == "в" || H == "ы") NS = NS + "ф";
-				if (H == "д" || H == "ф" || H == "г" || H == "н" || H == "м") NS = NS + "м";
+					// Cyrillic characters
+					case "а": case "е": case "и": case "о": case "у": case "ю": case "л": case "я": 
+						NS = NS + "е";
+						break;
+					case "с": case "й": case "х": 
+						NS = NS + "к";
+						break;
+					case "ж": case "к": case "л": case "р": case "у": 
+						NS = NS + "а";
+						break;
+					case "з": case "с": case "г": case "й": 
+						NS = NS + "г";
+						break;
+					case "б": case "р": case "в": case "ы": 
+						NS = NS + "ф";
+						break;
+					case "д": case "ф": case "г": case "н": case "м": 
+						NS = NS + "м";
+						break;
+					case "А": case "Е": case "И": case "О": case "У": case "Ю": case "Л": case "Я": 
+						NS = NS + "Е";
+						break;
+					case "С": case "Й": case "Х": 
+						NS = NS + "К";
+						break;
+					case "Ж": case "К": case "Л": case "Р": case "У": 
+						NS = NS + "А";
+						break;
+					case "З": case "С": case "Г": case "Й": 
+						NS = NS + "Г";
+						break;
+					case "Б": case "Р": case "В": case "Ы": 
+						NS = NS + "Ф";
+						break;
+					case "Д": case "Ф": case "Г": case "Н": case "М": 
+						NS = NS + "М";
+						break;
+				}
 
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
@@ -275,37 +538,149 @@ function SpeechGarble(C, CD) {
 	// Normal garble, keep vowels and a few letters the same
 	if ((GagEffect >= 4) || ((C.ID != 0) && (Player.GetDeafLevel() >= 2))) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
+			var H = CD.charAt(L);
 			if (H == "(") Par = true;
 			if (!Par) {
+				switch(H) {
 
-				// Regular characters
-				if (H == "v" || H == "b" || H == "c" || H == "t") NS = NS + "e";
-				if (H == "q" || H == "k" || H == "x") NS = NS + "k";
-				if (H == "w" || H == "y" || H == "j" || H == "l" || H == "r") NS = NS + "a";
-				if (H == "s" || H == "z") NS = NS + "h";
-				if (H == "d" || H == "f") NS = NS + "m";
-				if (H == "p") NS = NS + "f";
-				if (H == "g") NS = NS + "n";
-				if (H == " " || H == "!" || H == "?" || H == "." || H == "~" || H == "-" || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "m" || H == "n" || H == "h") NS = NS + H;
+					// Regular characters
+					case "v": case "b": case "c": case "t": 
+						NS = NS + "e";
+						break;
+					case "q": case "k": case "x": 
+						NS = NS + "k";
+						break;
+					case "w": case "y": case "j": case "l": case "r": 
+						NS = NS + "a";
+						break;
+					case "s": case "z": 
+						NS = NS + "h";
+						break;
+					case "d": case "f": 
+						NS = NS + "m";
+						break;
+					case "p": 
+						NS = NS + "f";
+						break;
+					case "g": 
+						NS = NS + "n";
+						break;
+					case "a": case "e": case "i": case "o": case "u": case "m": case "n": case "h": case " ": case "!": case "?": case ".": case "~": case "-":
+						NS = NS + H;
+						break;
+					case "V": case "B": case "C": case "T": 
+						NS = NS + "E";
+						break;
+					case "Q": case "K": case "X": 
+						NS = NS + "K";
+						break;
+					case "W": case "Y": case "J": case "L": case "R": 
+						NS = NS + "A";
+						break;
+					case "S": case "Z": 
+						NS = NS + "H";
+						break;
+					case "D": case "F": 
+						NS = NS + "M";
+						break;
+					case "P": 
+						NS = NS + "F";
+						break;
+					case "G": 
+						NS = NS + "N";
+						break;
+					case "A": case "E": case "I": case "O": case "U": case "M": case "N": case "H": 
+						NS = NS + H;
+						break;
 
-				// Accents/Latin characters
-				if (H == "á" || H == "â" || H == "à") NS = NS + "a";
-				if (H == "é" || H == "ê" || H == "è" || H == "ë") NS = NS + "e";
-				if (H == "í" || H == "î" || H == "ì" || H == "ï") NS = NS + "i";
-				if (H == "ó" || H == "ô" || H == "ò") NS = NS + "o";
-				if (H == "ú" || H == "û" || H == "ù" || H == "ü") NS = NS + "u";
-				if (H == "ç") NS = NS + "s";
-				if (H == "ñ") NS = NS + "n";
+					// Accents/Latin characters
+					case "á": case "â": case "à": 
+						NS = NS + "a";
+						break;
+					case "é": case "ê": case "è": case "ë": 
+						NS = NS + "e";
+						break;
+					case "í": case "î": case "ì": case "ï": 
+						NS = NS + "i";
+						break;
+					case "ó": case "ô": case "ò": 
+						NS = NS + "o";
+						break;
+					case "ú": case "û": case "ù": case "ü": 
+						NS = NS + "u";
+						break;
+					case "ç": 
+						NS = NS + "s";
+						break;
+					case "ñ": 
+						NS = NS + "n";
+						break;
+					case "Á": case "Â": case "À": 
+						NS = NS + "A";
+						break;
+					case "É": case "Ê": case "È": case "Ë": 
+						NS = NS + "E";
+						break;
+					case "Í": case "Î": case "Ì": case "Ï": 
+						NS = NS + "I";
+						break;
+					case "Ó": case "Ô": case "Ò": 
+						NS = NS + "O";
+						break;
+					case "Ú": case "Û": case "Ù": case "Ü": 
+						NS = NS + "U";
+						break;
+					case "Ç": 
+						NS = NS + "S";
+						break;
+					case "Ñ": 
+						NS = NS + "N";
+						break;
 
-				// Cyrillic characters
-				if (H == "в" || H == "ф" || H == "б" || H == "п") NS = NS + "фы";
-				if (H == "г" || H == "к" || H == "х") NS = NS + "к";
-				if (H == "в" || H == "у" || H == "ж" || H == "л" || H == "р") NS = NS + "а";
-				if (H == "с" || H == "я") NS = NS + "х";
-				if (H == "д" || H == "ф") NS = NS + "м";
-				if (H == "р") NS = NS + "ф";
-				if (H == "г") NS = NS + "н";
+					// Cyrillic characters
+					case "в": case "ф": case "б": case "п": 
+						NS = NS + "фы";
+						break;
+					case "г": case "к": case "х": 
+						NS = NS + "к";
+						break;
+					case "в": case "у": case "ж": case "л": case "р": 
+						NS = NS + "а";
+						break;
+					case "с": case "я": 
+						NS = NS + "х";
+						break;
+					case "д": case "ф": 
+						NS = NS + "м";
+						break;
+					case "р": 
+						NS = NS + "ф";
+						break;
+					case "г": 
+						NS = NS + "н";
+						break;
+					case "В": case "Ф": case "Б": case "П": 
+						NS = NS + "ФЫ";
+						break;
+					case "Г": case "К": case "Х": 
+						NS = NS + "К";
+						break;
+					case "В": case "У": case "Ж": case "Л": case "Р": 
+						NS = NS + "А";
+						break;
+					case "С": case "Я": 
+						NS = NS + "Х";
+						break;
+					case "Д": case "Ф": 
+						NS = NS + "М";
+						break;
+					case "Р": 
+						NS = NS + "Ф";
+						break;
+					case "Г": 
+						NS = NS + "Н";
+						break;
+				}
 
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
@@ -318,37 +693,149 @@ function SpeechGarble(C, CD) {
 	// Easy garble, keep vowels and a some letters the same
 	if (GagEffect >= 3) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
+			var H = CD.charAt(L);
 			if (H == "(") Par = true;
 			if (!Par) {
+				switch(H) {
 
-				// Regular characters
-				if (H == "v" || H == "b" || H == "c" || H == "t") NS = NS + "e";
-				if (H == "q" || H == "k" || H == "x") NS = NS + "k";
-				if (H == "w" || H == "y" || H == "j" || H == "l" || H == "r") NS = NS + "a";
-				if (H == "s" || H == "z") NS = NS + "s";
-				if (H == "d") NS = NS + "m";
-				if (H == "p") NS = NS + "f";
-				if (H == "g") NS = NS + "h";
-				if (H == " " || H == "!" || H == "?" || H == "." || H == "~" || H == "-" || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "m" || H == "n" || H == "h" || H == "f") NS = NS + H;
+					// Regular characters
+					case "v": case "b": case "c": case "t": 
+						NS = NS + "e";
+						break;
+					case "q": case "k": case "x": 
+						NS = NS + "k";
+						break;
+					case "w": case "y": case "j": case "l": case "r": 
+						NS = NS + "a";
+						break;
+					case "s": case "z": 
+						NS = NS + "s";
+						break;
+					case "d": 
+						NS = NS + "m";
+						break;
+					case "p": 
+						NS = NS + "f";
+						break;
+					case "g": 
+						NS = NS + "h";
+						break;
+					case "a": case "e": case "i": case "o": case "u": case "m": case "n": case "h": case "f": case " ": case "!": case "?": case ".": case "~": case "-":
+						NS = NS + H;
+						break;
+					case "V": case "B": case "C": case "T": 
+						NS = NS + "E";
+						break;
+					case "Q": case "K": case "X": 
+						NS = NS + "K";
+						break;
+					case "W": case "Y": case "J": case "L": case "R": 
+						NS = NS + "A";
+						break;
+					case "S": case "Z": 
+						NS = NS + "S";
+						break;
+					case "D": 
+						NS = NS + "M";
+						break;
+					case "P": 
+						NS = NS + "F";
+						break;
+					case "G": 
+						NS = NS + "H";
+						break;
+					case "A": case "E": case "I": case "O": case "U": case "M": case "N": case "H": case "F": 
+						NS = NS + H;
+						break;
 
-				// Accents/Latin characters
-				if (H == "á" || H == "â" || H == "à") NS = NS + "a";
-				if (H == "é" || H == "ê" || H == "è" || H == "ë") NS = NS + "e";
-				if (H == "í" || H == "î" || H == "ì" || H == "ï") NS = NS + "i";
-				if (H == "ó" || H == "ô" || H == "ò") NS = NS + "o";
-				if (H == "ú" || H == "û" || H == "ù" || H == "ü") NS = NS + "u";
-				if (H == "ç") NS = NS + "s";
-				if (H == "ñ") NS = NS + "n";
+					// Accents/Latin characters
+					case "á": case "â": case "à": 
+						NS = NS + "a";
+						break;
+					case "é": case "ê": case "è": case "ë": 
+						NS = NS + "e";
+						break;
+					case "í": case "î": case "ì": case "ï": 
+						NS = NS + "i";
+						break;
+					case "ó": case "ô": case "ò": 
+						NS = NS + "o";
+						break;
+					case "ú": case "û": case "ù": case "ü": 
+						NS = NS + "u";
+						break;
+					case "ç": 
+						NS = NS + "s";
+						break;
+					case "ñ": 
+						NS = NS + "n";
+						break;
+					case "Á": case "Â": case "À": 
+						NS = NS + "A";
+						break;
+					case "É": case "Ê": case "È": case "Ë": 
+						NS = NS + "E";
+						break;
+					case "Í": case "Î": case "Ì": case "Ï": 
+						NS = NS + "I";
+						break;
+					case "Ó": case "Ô": case "Ò": 
+						NS = NS + "O";
+						break;
+					case "Ú": case "Û": case "Ù": case "Ü": 
+						NS = NS + "U";
+						break;
+					case "Ç": 
+						NS = NS + "S";
+						break;
+					case "Ñ": 
+						NS = NS + "N";
+						break;
 
-				// Cyrillic characters
-				if (H == "в" || H == "ф" || H == "б" || H == "п") NS = NS + "фы";
-				if (H == "г" || H == "к" || H == "х") NS = NS + "к";
-				if (H == "в" || H == "у" || H == "ж" || H == "л" || H == "р") NS = NS + "а";
-				if (H == "с" || H == "я") NS = NS + "х";
-				if (H == "д" || H == "ф") NS = NS + "м";
-				if (H == "р") NS = NS + "ф";
-				if (H == "г") NS = NS + "н";
+					// Cyrillic characters
+					case "в": case "ф": case "б": case "п": 
+						NS = NS + "фы";
+						break;
+					case "г": case "к": case "х": 
+						NS = NS + "к";
+						break;
+					case "в": case "у": case "ж": case "л": case "р": 
+						NS = NS + "а";
+						break;
+					case "с": case "я": 
+						NS = NS + "х";
+						break;
+					case "д": case "ф": 
+						NS = NS + "м";
+						break;
+					case "р": 
+						NS = NS + "ф";
+						break;
+					case "г": 
+						NS = NS + "н";
+						break;
+					case "В": case "Ф": case "Б": case "П": 
+						NS = NS + "ФЫ";
+						break;
+					case "Г": case "К": case "Х": 
+						NS = NS + "К";
+						break;
+					case "В": case "У": case "Ж": case "Л": case "Р": 
+						NS = NS + "А";
+						break;
+					case "С": case "Я": 
+						NS = NS + "Х";
+						break;
+					case "Д": case "Ф": 
+						NS = NS + "М";
+						break;
+					case "Р": 
+						NS = NS + "Ф";
+						break;
+					case "Г": 
+						NS = NS + "Н";
+						break;
+				}
 
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
@@ -361,37 +848,149 @@ function SpeechGarble(C, CD) {
 	// Light garble, half of the letters stay the same
 	if ((GagEffect >= 2) || ((C.ID != 0) && (Player.GetDeafLevel() >= 1))) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
+			var H = CD.charAt(L);
 			if (H == "(") Par = true;
 			if (!Par) {
+				switch(H) {
 
-				// Regular characters
-				if (H == "c" || H == "t") NS = NS + "e";
-				if (H == "q" || H == "k" || H == "x") NS = NS + "k";
-				if (H == "j" || H == "l" || H == "r") NS = NS + "a";
-				if (H == "s") NS = NS + "z";
-				if (H == "z") NS = NS + "s";
-				if (H == "f") NS = NS + "h";
-				if (H == "d" || H == "m" || H == "g") NS = NS + "m";
-				if (H == "b" || H == "h" || H == "n" || H == "v" || H == "w" || H == "p" || H == " " || H == "'" || H == "?" || H == "!" || H == "." || H == "," || H == "~" || H == "-" || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "y") NS = NS + H;
+					// Regular characters
+					case "c": case "t": 
+						NS = NS + "e";
+						break;
+					case "q": case "k": case "x": 
+						NS = NS + "k";
+						break;
+					case "j": case "l": case "r": 
+						NS = NS + "a";
+						break;
+					case "s": 
+						NS = NS + "z";
+						break;
+					case "z": 
+						NS = NS + "s";
+						break;
+					case "f": 
+						NS = NS + "h";
+						break;
+					case "d": case "m": case "g": 
+						NS = NS + "m";
+						break;
+					case "b": case "h": case "n": case "v": case "w": case "p": case "a": case "e": case "i": case "o": case "u": case "y": case " ": case "'": case "?": case "!": case ".": case ",": case "~": case "-":
+						NS = NS + H;
+						break;	
+					case "C": case "T": 
+						NS = NS + "E";
+						break;
+					case "Q": case "K": case "X": 
+						NS = NS + "K";
+						break;
+					case "J": case "L": case "R": 
+						NS = NS + "A";
+						break;
+					case "S": 
+						NS = NS + "Z";
+						break;
+					case "Z": 
+						NS = NS + "S";
+						break;
+					case "F": 
+						NS = NS + "H";
+						break;
+					case "D": case "M": case "G": 
+						NS = NS + "M";
+						break;
+					case "B": case "H": case "N": case "V": case "W": case "P": case "A": case "E": case "I": case "O": case "U": case "Y": 
+						NS = NS + H;
+						break;
 
-				// Accents/Latin characters
-				if (H == "á" || H == "â" || H == "à") NS = NS + "a";
-				if (H == "é" || H == "ê" || H == "è" || H == "ë") NS = NS + "e";
-				if (H == "í" || H == "î" || H == "ì" || H == "ï") NS = NS + "i";
-				if (H == "ó" || H == "ô" || H == "ò") NS = NS + "o";
-				if (H == "ú" || H == "û" || H == "ù" || H == "ü") NS = NS + "u";
-				if (H == "ç") NS = NS + "s";
-				if (H == "ñ") NS = NS + "n";
+					// Accents/Latin characters
+					case "á": case "â": case "à": 
+						NS = NS + "a";
+						break;
+					case "é": case "ê": case "è": case "ë": 
+						NS = NS + "e";
+						break;
+					case "í": case "î": case "ì": case "ï": 
+						NS = NS + "i";
+						break;
+					case "ó": case "ô": case "ò": 
+						NS = NS + "o";
+						break;
+					case "ú": case "û": case "ù": case "ü": 
+						NS = NS + "u";
+						break;
+					case "ç": 
+						NS = NS + "s";
+						break;
+					case "ñ": 
+						NS = NS + "n";
+						break;
+					case "á": case "â": case "à": 
+						NS = NS + "a";
+						break;
+					case "é": case "ê": case "è": case "ë": 
+						NS = NS + "e";
+						break;
+					case "í": case "î": case "ì": case "ï": 
+						NS = NS + "i";
+						break;
+					case "ó": case "ô": case "ò": 
+						NS = NS + "o";
+						break;
+					case "ú": case "û": case "ù": case "ü": 
+						NS = NS + "u";
+						break;
+					case "ç": 
+						NS = NS + "s";
+						break;
+					case "ñ": 
+						NS = NS + "n";
+						break;
 
-				// Cyrillic characters
-				if (H == "ч" || H == "ц") NS = NS + "е";
-				if (H == "й" || H == "ф" || H == "в") NS = NS + "к";
-				if (H == "д" || H == "л" || H == "щ"|| H == "я") NS = NS + "а";
-				if (H == "з") NS = NS + "с";
-				if (H == "с") NS = NS + "з";
-				if (H == "д" || H == "ф" || H == "м" || H == "г") NS = NS + "м";
-				if (H == "а" || H == "п" || H == "р" || H == "о" || H == "к" || H == "е"  || H == "н" || H == "м" || H == "и" || H == "т" ) NS = NS + H;
+					// Cyrillic characters
+					case "ч": case "ц": 
+						NS = NS + "е";
+						break;
+					case "й": case "ф": case "в": 
+						NS = NS + "к";
+						break;
+					case "д": case "л": case "щ": case "я": 
+						NS = NS + "а";
+						break;
+					case "з": 
+						NS = NS + "с";
+						break;
+					case "с": 
+						NS = NS + "з";
+						break;
+					case "д": case "ф": case "м": case "г": 
+						NS = NS + "м";
+						break;
+					case "а": case "п": case "р": case "о": case "к": case "е": case "н": case "м": case "и": case "т": 
+						NS = NS + H;
+						break;
+					case "Ч": case "Ц": 
+						NS = NS + "Е";
+						break;
+					case "Й": case "Ф": case "В": 
+						NS = NS + "К";
+						break;
+					case "Д": case "Л": case "Щ": case "Я": 
+						NS = NS + "А";
+						break;
+					case "З": 
+						NS = NS + "С";
+						break;
+					case "С": 
+						NS = NS + "З";
+						break;
+					case "Д": case "Ф": case "М": case "Г": 
+						NS = NS + "М";
+						break;
+					case "А": case "П": case "Р": case "О": case "К": case "Е": case "Н": case "М": case "И": case "Т": 
+						NS = NS + H;
+						break;
+				}
 
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
@@ -404,34 +1003,131 @@ function SpeechGarble(C, CD) {
 	// Very Light garble, most of the letters stay the same
 	if (GagEffect >= 1) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
+			var H = CD.charAt(L);
 			if (H == "(") Par = true;
 			if (!Par) {
+				switch(H) {
 
-				// Regular characters
-				if (H == "t") NS = NS + "e";
-				if (H == "c" || H == "q" || H == "k" || H == "x") NS = NS + "k";
-				if (H == "j" || H == "l" || H == "r") NS = NS + "a";
-				if (H == "d" || H == "m" || H == "g") NS = NS + "m";
-				if (H == "b" || H == "h" || H == "n" || H == "v" || H == "w" || H == "p" || H == " " || H == "'" || H == "?" || H == "!" || H == "." || H == "," || H == "~" || H == "-" || H == "a" || H == "e" || H == "i" || H == "o" || H == "u" || H == "y" || H == "f" || H == "s" || H == "z") NS = NS + H;
+					// Regular characters
+					case "t": 
+						NS = NS + "e";
+						break;
+					case "c": case "q": case "k": case "x": 
+						NS = NS + "k";
+						break;
+					case "j": case "l": case "r": 
+						NS = NS + "a";
+						break;
+					case "d": case "m": case "g": 
+						NS = NS + "m";
+						break;
+					case "b": case "h": case "n": case "v": case "w": case "p": case "a": case "e": case "i": case "o": case "u": case "y": case "f": case "s": case "z": case " ": case "'": case "?": case "!": case ".": case ",": case "~": case "-":
+						NS = NS + H;
+						break;
+					case "T": 
+						NS = NS + "E";
+						break;
+					case "C": case "Q": case "K": case "X": 
+						NS = NS + "K";
+						break;
+					case "J": case "L": case "R": 
+						NS = NS + "A";
+						break;
+					case "D": case "M": case "G": 
+						NS = NS + "M";
+						break;
+					case "B": case "H": case "N": case "V": case "W": case "P": case "A": case "E": case "I": case "O": case "U": case "Y": case "F": case "S": case "Z": 
+						NS = NS + H;
+						break;
 
-				// Accents/Latin characters
-				if (H == "á" || H == "â" || H == "à") NS = NS + "a";
-				if (H == "é" || H == "ê" || H == "è" || H == "ë") NS = NS + "e";
-				if (H == "í" || H == "î" || H == "ì" || H == "ï") NS = NS + "i";
-				if (H == "ó" || H == "ô" || H == "ò") NS = NS + "o";
-				if (H == "ú" || H == "û" || H == "ù" || H == "ü") NS = NS + "u";
-				if (H == "ç") NS = NS + "s";
-				if (H == "ñ") NS = NS + "n";
+					// Accents/Latin characters
+					case "á": case "â": case "à": 
+						NS = NS + "a";
+						break;
+					case "é": case "ê": case "è": case "ë": 
+						NS = NS + "e";
+						break;
+					case "í": case "î": case "ì": case "ï": 
+						NS = NS + "i";
+						break;
+					case "ó": case "ô": case "ò": 
+						NS = NS + "o";
+						break;
+					case "ú": case "û": case "ù": case "ü": 
+						NS = NS + "u";
+						break;
+					case "ç": 
+						NS = NS + "s";
+						break;
+					case "ñ": 
+						NS = NS + "n";
+						break;
+					case "Á": case "Â": case "À": 
+						NS = NS + "A";
+						break;
+					case "É": case "Ê": case "È": case "Ë": 
+						NS = NS + "E";
+						break;
+					case "Í": case "Î": case "Ì": case "Ï": 
+						NS = NS + "I";
+						break;
+					case "Ó": case "Ô": case "Ò": 
+						NS = NS + "O";
+						break;
+					case "Ú": case "Û": case "Ù": case "Ü": 
+						NS = NS + "U";
+						break;
+					case "Ç": 
+						NS = NS + "S";
+						break;
+					case "Ñ": 
+						NS = NS + "N";
+						break;
 
-				// Cyrillic characters
-				if (H == "ч" || H == "ц") NS = NS + "е";
-				if (H == "й" || H == "ф" || H == "в") NS = NS + "к";
-				if (H == "д" || H == "л" || H == "щ"|| H == "я") NS = NS + "а";
-				if (H == "з") NS = NS + "с";
-				if (H == "с") NS = NS + "з";
-				if (H == "д" || H == "ф" || H == "м" || H == "г") NS = NS + "м";
-				if (H == "а" || H == "п" || H == "р" || H == "о" || H == "к" || H == "е"  || H == "н" || H == "м" || H == "и" || H == "т" ) NS = NS + H;
+					// Cyrillic characters
+					case "ч": case "ц": 
+						NS = NS + "е";
+						break;
+					case "й": case "ф": case "в": 
+						NS = NS + "к";
+						break;
+					case "д": case "л": case "щ": case "я": 
+						NS = NS + "а";
+						break;
+					case "з": 
+						NS = NS + "с";
+						break;
+					case "с": 
+						NS = NS + "з";
+						break;
+					case "д": case "ф": case "м": case "г": 
+						NS = NS + "м";
+						break;
+					case "а": case "п": case "р": case "о": case "к": case "е": case "н": case "м": case "и": case "т" : 
+						NS = NS + H;
+						break;
+					case "Ч": case "Ц": 
+						NS = NS + "Е";
+						break;
+					case "Й": case "Ф": case "В": 
+						NS = NS + "К";
+						break;
+					case "Д": case "Л": case "Щ": case "Я": 
+						NS = NS + "А";
+						break;
+					case "З": 
+						NS = NS + "С";
+						break;
+					case "С": 
+						NS = NS + "З";
+						break;
+					case "Д": case "Ф": case "М": case "Г": 
+						NS = NS + "М";
+						break;
+					case "А": case "П": case "Р": case "О": case "К": case "Е": case "Н": case "М": case "И": case "Т" : 
+						NS = NS + H;
+						break;
+				}
 
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
@@ -528,17 +1224,35 @@ function SpeechBabyTalk(C, CD) {
 
 	if (C.Effect.indexOf("RegressedTalk") >= 0) {
 		for (let L = 0; L < CD.length; L++) {
-			var H = CD.charAt(L).toLowerCase();
+			var H = CD.charAt(L);
 			if (H == "(") Par = true;
 			if (!Par) {
-				if (H == "k" || H == "l") NS = NS + "w";
-				if (H == "s") NS = NS + "sh";
-				if (H == "t") NS = NS + "st";
-				if (H == "a" || H == "b" || H == "c" || H == "d" || H == "e" || H == "f" || H == "g" || H == "h" || H == "i" || H == "j" || H == "m" || H == "n" || H == "o" || H == "p" || H == "q" || H == "r" || H == "u" || H == "v" || H == "w" || H == "x" || H == "y" || H == "z" || H == " " || H == "'" || H == "?" || H == "!" || H == "." || H == ",") NS = NS + H;
+				switch(H) {
+					case "k": case "l":
+						NS = NS + "w";
+						break;
+					case "K": case "L":
+						NS = NS + "W";
+						break;
+					case "s":
+						NS = NS + "sh";
+						break;
+					case "S":
+						NS = NS + "Sh";
+						break;
+					case "t":
+						NS = NS + "th";
+						break;
+					case "T":
+						NS = NS + "Th";
+						break;
+					default:
+						NS = NS + H;
+						break;
+				}
 			} else NS = NS + CD.charAt(L);
-			if (H == ")") Par = false;
 		}
-		return NS;
+		return NS.replace(/thh/g, "th").replace(/Thh/g, "Th").replace(/shh/g, "sh").replace(/Shh/g, "Sh");
 	}
 
 	// Not drunk the milk, we return the regular text
