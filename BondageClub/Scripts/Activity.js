@@ -366,6 +366,11 @@ function ActivityOrgasmGameGenerate(Progress) {
  * @returns {void} - Nothing
  */
 function ActivityOrgasmPrepare(C) {
+	if (C.Effect.includes("DenialMode")) {
+		C.ArousalSettings.Progress = 99;
+		return;
+	}
+
 	if (C.IsEdged()) {
 		C.ArousalSettings.Progress = 95;
 		return;
@@ -469,7 +474,7 @@ function ActivityTimerProgress(C, Progress) {
 			ActivityExpression(C, C.ArousalSettings.Progress);
 
 	// Can trigger an orgasm
-	if (C.ArousalSettings.Progress == 100 && !C.Effects.includes("DenialMode")) ActivityOrgasmPrepare(C);
+	if (C.ArousalSettings.Progress == 100) ActivityOrgasmPrepare(C);
 
 }
 

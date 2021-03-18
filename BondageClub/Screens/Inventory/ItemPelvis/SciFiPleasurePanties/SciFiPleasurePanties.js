@@ -5,7 +5,7 @@ function InventoryItemPelvisSciFiPleasurePantiesLoad() {
 		InventoryItemMouthFuturisticPanelGagLoadAccessDenied()
 	}
     else{
-        if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Intensity: -1, ShockLevel: 0, ShowText: true, Effect: ["Egged"], LockButt: false, LockCrotch: false, Block: [] };
+        if (DialogFocusItem.Property == null) DialogFocusItem.Property = { Intensity: -1, ShockLevel: 0, ShowText: true, Effect: ["Egged"], LockButt: false, LockCrotch: false, Block: [], OrgasmLock: false };
         if (DialogFocusItem.Property.Intensity == null) DialogFocusItem.Property.Intensity = -1;
         if (DialogFocusItem.Property.ShockLevel == null) DialogFocusItem.Property.ShockLevel = 0;
         if (DialogFocusItem.Property.ShowText == null) DialogFocusItem.Property.ShowText = true;
@@ -13,10 +13,14 @@ function InventoryItemPelvisSciFiPleasurePantiesLoad() {
         if (DialogFocusItem.Property.LockButt == null) DialogFocusItem.Property.LockButt = false;
         if (DialogFocusItem.Property.LockCrotch == null) DialogFocusItem.Property.LockCrotch = false;
         if (DialogFocusItem.Property.Block == null) DialogFocusItem.Property.Block = [];
+        if (DialogFocusItem.Property.OrgasmLock == null) DialogFocusItem.Property.OrgasmLock = false;
     }
 }
 
 function InventoryItemPelvisSciFiPleasurePantiesDraw() {
+
+	const Vibrating = DialogFocusItem.Property.Intensity >= 0;
+	DrawAssetPreview(1387, 175, DialogFocusItem.Asset, {Vibrating});
 	
     var C = (Player.FocusGroup != null) ? Player : CurrentCharacter;
 	if (InventoryItemMouthFuturisticPanelGagValidate(C) !== "") {
@@ -29,6 +33,8 @@ function InventoryItemPelvisSciFiPleasurePantiesDraw() {
         DrawButton(1625, 580, 200, 55, DialogFind(Player, "Medium"), (DialogFocusItem.Property.Intensity == 1) ? "#888888" : "White");
         DrawButton(1175, 650, 200, 55, DialogFind(Player, "High"), (DialogFocusItem.Property.Intensity == 2) ? "#888888" : "White");
 		DrawButton(1400, 650, 200, 55, DialogFind(Player, "Maximum"), (DialogFocusItem.Property.Intensity == 3) ? "#888888" : "White");
+        DrawButton(1200, 930, 200, 55, DialogFind(Player, "LockOrgasm"), (DialogFocusItem.Property.OrgasmLock == true) ? "#888888" : "White");
+        DrawButton(1550, 930, 200, 55, DialogFind(Player, "UnlockOrgasm"), (DialogFocusItem.Property.OrgasmLock == false) ? "#888888" : "White");
 		
 		DrawText(DialogFind(Player, "Intensity" + DialogFocusItem.Property.ShockLevel.toString()).replace("Item", DialogFocusItem.Asset.Description).replace("intensity", "Shock Intensity").replace("Vibe", "Shock Vibe"), 1500, 750, "White", "Gray");
         DrawButton(1175, 780, 200, 55, DialogFind(Player, "Low"), (DialogFocusItem.Property.ShockLevel == 0) ? "#888888" : "White");
@@ -58,6 +64,8 @@ function InventoryItemPelvisSciFiPleasurePantiesClick() {
 		if (MouseIn(1625, 580, 200, 55) && (DialogFocusItem.Property.Intensity != 1)) InventoryItemPelvisSciFiPleasurePantiesSetIntensity(1 - DialogFocusItem.Property.Intensity);
 		if (MouseIn(1175, 650, 200, 55) && (DialogFocusItem.Property.Intensity != 2)) InventoryItemPelvisSciFiPleasurePantiesSetIntensity(2 - DialogFocusItem.Property.Intensity);
 		if (MouseIn(1400, 650, 200, 55) && (DialogFocusItem.Property.Intensity != 3)) InventoryItemPelvisSciFiPleasurePantiesSetIntensity(3 - DialogFocusItem.Property.Intensity);
+		if (MouseIn(1200, 930, 200, 45) && (DialogFocusItem.Property.OrgasmLock == false)) InventoryItemPelvisSciFiPleasurePantiesLockOrgasm(true);
+		if (MouseIn(1550, 930, 200, 45) && (DialogFocusItem.Property.OrgasmLock == true)) InventoryItemPelvisSciFiPleasurePantiesLockOrgasm(false);
 		
 		if ((MouseX >= 1175) && (MouseX <= 1239) && (MouseY >= 850) && (MouseY <= 914) && (CurrentScreen == "ChatRoom")) {
 			DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
@@ -69,7 +77,7 @@ function InventoryItemPelvisSciFiPleasurePantiesClick() {
 		if (MouseIn(1175, 780, 200, 55) && (DialogFocusItem.Property.ShockLevel != 0)) InventoryItemPelvisSciFiPleasurePantiesSetShockLevel(0 - DialogFocusItem.Property.ShockLevel);
 		if (MouseIn(1400, 780, 200, 55) && (DialogFocusItem.Property.ShockLevel != 1)) InventoryItemPelvisSciFiPleasurePantiesSetShockLevel(1 - DialogFocusItem.Property.ShockLevel);
 		if (MouseIn(1625, 780, 200, 55) && (DialogFocusItem.Property.ShockLevel != 2)) InventoryItemPelvisSciFiPleasurePantiesSetShockLevel(2 - DialogFocusItem.Property.ShockLevel);
-		if (Player.CanInteract() && MouseIn(1625, 850, 200, 55)) InventoryItemPelvisLoveChastityBeltTriggerShock();
+		if (Player.CanInteract() && MouseIn(1625, 850, 200, 55)) InventoryItemPelvisSciFiPleasurePantiesShockTrigger();
 
 		if (MouseIn(1550, 480, 250, 65)) {
 			DialogFocusItem.Property.LockButt = !DialogFocusItem.Property.LockButt;
@@ -78,9 +86,8 @@ function InventoryItemPelvisSciFiPleasurePantiesClick() {
             if (CharacterGetCurrent().ID == 0) ServerPlayerAppearanceSync();
             if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(C, "ItemPelvis");
 			var Dictionary = [];
-			Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-			Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-			ChatRoomPublishCustomAction("SciFiPleasurePanties" + (DialogFocusItem.Property.LockButt ? "LockButt" : "UnlockButt"), true, Dictionary);
+			Dictionary.push({Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber});
+			ChatRoomPublishCustomAction("SciFiPleasurePantiesAction" + (DialogFocusItem.Property.LockButt ? "LockButt" : "UnlockButt"), true, Dictionary);
 		}
 
 		if (MouseIn(1200, 480, 250, 65)) {
@@ -90,9 +97,8 @@ function InventoryItemPelvisSciFiPleasurePantiesClick() {
 			if (CharacterGetCurrent().ID == 0) ServerPlayerAppearanceSync();
 			if (CurrentScreen == "ChatRoom") ChatRoomCharacterItemUpdate(C, "ItemPelvis");
 			var Dictionary = [];
-			Dictionary.push({Tag: "DestinationCharacter", Text: C.Name, MemberNumber: C.MemberNumber});
-			Dictionary.push({Tag: "SourceCharacter", Text: Player.Name, MemberNumber: Player.MemberNumber});
-			ChatRoomPublishCustomAction("SciFiPleasurePanties" + (DialogFocusItem.Property.LockCrotch ? "AddShield" : "RemoveShield"), true, Dictionary);
+			Dictionary.push({Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber});
+			ChatRoomPublishCustomAction("SciFiPleasurePantiesAction" + (DialogFocusItem.Property.LockCrotch ? "AddShield" : "RemoveShield"), true, Dictionary);
 		}
 	}
 }
@@ -100,11 +106,15 @@ function InventoryItemPelvisSciFiPleasurePantiesClick() {
 function InventoryItemPelvisSciFiPleasurePantiesLockOrgasm(OrgasmLock) {
 	var C = CharacterGetCurrent() || CharacterAppearanceSelection;
 	
-    if (OrgasmLock == true && !DialogFocusItem.Property.Effect.includes("OrgasmLock")) DialogFocusItem.Property.Effect.push("OrgasmLock");
-    else if (OrgasmLock == false && DialogFocusItem.Property.Effect.includes("OrgasmLock")) {
+    if (OrgasmLock == true && !DialogFocusItem.Property.Effect.includes("DenialMode")) {
+		DialogFocusItem.Property.Effect.push("DenialMode");
+		DialogFocusItem.Property.OrgasmLock = true;
+	}
+    else if (OrgasmLock == false && DialogFocusItem.Property.Effect.includes("DenialMode")) {
+		DialogFocusItem.Property.OrgasmLock = false;
         for (let E = 0; E < DialogFocusItem.Property.Effect.length; E++) {
             var Effect = DialogFocusItem.Property.Effect[E];
-            if (Effect == "OrgasmLock") {
+            if (Effect == "DenialMode") {
                 DialogFocusItem.Property.Effect.splice(E, 1);
                 E--;
             }
@@ -116,8 +126,7 @@ function InventoryItemPelvisSciFiPleasurePantiesLockOrgasm(OrgasmLock) {
 
 	var Dictionary = [];
 	Dictionary.push({Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber});
-	Dictionary.push({Tag: "AssetName", Text: DialogFocusItem.Asset.Description.toLowerCase()});
-    ChatRoomPublishCustomAction("Scifi" + ((OrgasmLock == true) ? "OrgasmLockOn" : "OrgasmLockOff"), true, Dictionary);
+    ChatRoomPublishCustomAction("SciFiPleasurePantiesBeep" + ((OrgasmLock == true) ? "DenialModeActivate" : "DenialModeDeactivate"), true, Dictionary);
 }
 
 function InventoryItemPelvisSciFiPleasurePantiesLockButt() {
@@ -165,7 +174,7 @@ function InventoryItemPelvisSciFiPleasurePantiesSetIntensity(Modifier) {
 	
 	var Dictionary = [];
 	Dictionary.push({Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber});
-	ChatRoomPublishCustomAction("SciFiPleasurePanties" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity, true, Dictionary);
+	ChatRoomPublishCustomAction("SciFiPleasurePantiesVibe" + ((Modifier > 0) ? "Increase" : "Decrease") + "To" + DialogFocusItem.Property.Intensity, true, Dictionary);
 }
 
 function InventoryItemPelvisSciFiPleasurePantiesSetShockLevel(Modifier) {
@@ -202,8 +211,6 @@ function InventoryItemPelvisSciFiPleasurePantiesShockTrigger() {
 	}
 
 	var Dictionary = [];
-	Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
-	Dictionary.push({ Tag: "DestinationCharacterName", Text: C.Name, MemberNumber: C.MemberNumber });
 	Dictionary.push({Tag: "AssetName", Text: DialogFocusItem.Asset.Description.toLowerCase()});		
     ChatRoomPublishCustomAction("SciFiPleasurePantiesShockTrigger" + DialogFocusItem.Property.ShockLevel, true, Dictionary);
     
