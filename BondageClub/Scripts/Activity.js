@@ -469,7 +469,7 @@ function ActivityTimerProgress(C, Progress) {
 			ActivityExpression(C, C.ArousalSettings.Progress);
 
 	// Can trigger an orgasm
-	if (C.ArousalSettings.Progress == 100) ActivityOrgasmPrepare(C);
+	if (C.ArousalSettings.Progress == 100 && !C.Effects.includes("DenialMode")) ActivityOrgasmPrepare(C);
 
 }
 
