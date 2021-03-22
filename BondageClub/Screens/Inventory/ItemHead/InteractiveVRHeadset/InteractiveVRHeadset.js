@@ -4,21 +4,21 @@ var InventoryItemHeadInteractiveVRHeadsetOptions = [
 	{
 		Name: "AR",
 		Property: {
-			Type: "AR",
+			Type: null,
 			Effect: [],
 		},
 	},
 	{
 		Name: "Virtual",
 		Property: {
-			Type: null,
+			Type: "VR",
 			Effect: ["BlindHeavy", "Prone"],
 		},
 	},
 	{
 		Name: "Off",
 		Property: {
-			Type: "Off",
+			Type: "None",
 			Effect: ["BlindHeavy", "Prone"],
 		},
 	},

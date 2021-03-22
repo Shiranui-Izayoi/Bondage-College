@@ -532,7 +532,7 @@ function ChatRoomDrawCharacter(DoClick) {
 	let DarkFactor = CharacterGetDarkFactor(Player);
 
 	// Check if we should use a custom background
-	const CustomBG = DarkFactor === 0 && !DoClick ? DrawGetCustomBackground() : "";
+	const CustomBG = !DoClick ? DrawGetCustomBackground() : "";
 	const Background = CustomBG || ChatRoomData.Background;
 	if (CustomBG) DarkFactor = CharacterGetDarkFactor(Player, true);
 

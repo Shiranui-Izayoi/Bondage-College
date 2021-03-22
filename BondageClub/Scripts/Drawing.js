@@ -1112,7 +1112,8 @@ function DrawGetCustomBackground() {
 			type = blindfold.Property.Type
 		if (blindfold.Asset.CustomBlindBackground[type])
 			customBG = blindfold.Asset.CustomBlindBackground[type]
-	} else if (hood && hood.Asset && hood.Asset.CustomBlindBackground) {
+	}
+	else if (hood && hood.Asset && hood.Asset.CustomBlindBackground) {
 				var type = "None"
 		if (hood.Property && hood.Property.Type && hood.Asset.CustomBlindBackground[hood.Property.Type])
 			type = hood.Property.Type
@@ -1146,13 +1147,11 @@ function DrawProcess() {
 			if (DarkFactor == 1 && (CurrentCharacter != null || ShopStarted) && !CommonPhotoMode) DarkFactor = 0.5;
 		}
 		const Invert = Player.GraphicsSettings && Player.GraphicsSettings.InvertRoom && Player.IsInverted();
-		if (DarkFactor == 0.0) {
-			customBG = DrawGetCustomBackground()
-			
-			if (customBG != "") {
-				B = customBG
-				DarkFactor = CharacterGetDarkFactor(Player, true);
-			}
+		customBG = DrawGetCustomBackground()
+		
+		if (customBG != "") {
+			B = customBG
+			DarkFactor = CharacterGetDarkFactor(Player, true);
 		}
 		
 		if (DarkFactor > 0.0) {
