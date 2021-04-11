@@ -475,8 +475,8 @@ function ValidationSanitizeProperties(C, item) {
 		}
 	}
 
-	// Remove invalid properties from non-typed items
-	if (property.Type == null) {
+	// Remove invalid properties from non-typed & non-restrain items
+	if (property.Type == null && property.Restrain == null) {
 		["SetPose", "Difficulty", "SelfUnlock", "Hide"].forEach(P => {
 			if (property[P] != null) {
 				console.warn("Removing invalid property:", P);
@@ -549,11 +549,6 @@ function ValidationSanitizeLock(C, item) {
 
 	// Remove any invalid lock member number
 	const lockNumber = property.LockMemberNumber;
-	if (lockNumber != null && typeof lockNumber !== "number") {
-		console.warn("Removing invalid lock member number:", lockNumber);
-		delete property.LockMemberNumber;
-		changed = true;
-	}
 
 	// The character's member number is always valid on a lock
 	if (lockNumber !== C.MemberNumber) {
