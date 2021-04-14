@@ -67,7 +67,7 @@ function InventoryItemPelvisSciFiPleasurePantiesClick() {
 		if (MouseIn(1200, 930, 200, 45) && (DialogFocusItem.Property.OrgasmLock == false)) InventoryItemPelvisSciFiPleasurePantiesLockOrgasm(true);
 		if (MouseIn(1550, 930, 200, 45) && (DialogFocusItem.Property.OrgasmLock == true)) InventoryItemPelvisSciFiPleasurePantiesLockOrgasm(false);
 		
-		if (MouseIn(1420, 880, 64, 64) && (CurrentScreen == "ChatRoom")) {
+		if (MouseIn(1175, 850, 64, 64) && (CurrentScreen == "ChatRoom")) {
 			DialogFocusItem.Property.ShowText = !DialogFocusItem.Property.ShowText;
 		}
 		if (MouseIn(1175, 780, 200, 55) && (DialogFocusItem.Property.ShockLevel != 0)) InventoryItemPelvisSciFiPleasurePantiesSetShockLevel(0 - DialogFocusItem.Property.ShockLevel);
