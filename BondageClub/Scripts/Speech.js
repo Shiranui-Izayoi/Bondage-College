@@ -399,14 +399,6 @@ function SpeechGarble7(H) {
 		case "v":
 			H = "m";
 			break;
-		case " ":
-		case ".":
-		case "?":
-		case "!":
-		case "~":
-		case "-":
-		case "b":
-			break;
 		case "A":
 		case "E":
 		case "I":
@@ -606,13 +598,6 @@ function SpeechGarble6(H) {
 		case "n":
 		case "m":
 			H = "m";
-			break;
-		case " ":
-		case ".":
-		case "?":
-		case "!":
-		case "~":
-		case "-":
 			break;
 		case "A":
 		case "E":
@@ -820,14 +805,6 @@ function SpeechGarble5(H) {
 		case "m":
 			H = "m";
 			break;
-		case "n":
-		case " ":
-		case ".":
-		case "?":
-		case "!":
-		case "~":
-		case "-":
-			break;
 		case "E":
 		case "I":
 		case "O":
@@ -864,8 +841,6 @@ function SpeechGarble5(H) {
 		case "G":
 		case "M":
 			H = "M";
-			break;
-		case "N":
 			break;
 
 			// Accents/Latin characters
@@ -1028,21 +1003,6 @@ function SpeechGarble4(H) {
 		case "g":
 			H = "n";
 			break;
-		case "a":
-		case "e":
-		case "i":
-		case "o":
-		case "u":
-		case "m":
-		case "n":
-		case "h":
-		case " ":
-		case "!":
-		case "?":
-		case ".":
-		case "~":
-		case "-":
-			break;
 		case "V":
 		case "B":
 		case "C":
@@ -1074,15 +1034,6 @@ function SpeechGarble4(H) {
 			break;
 		case "G":
 			H = "N";
-			break;
-		case "A":
-		case "E":
-		case "I":
-		case "O":
-		case "U":
-		case "M":
-		case "N":
-		case "H":
 			break;
 
 			// Accents/Latin characters
@@ -1246,22 +1197,6 @@ function SpeechGarble3(H) {
 		case "g":
 			H = "h";
 			break;
-		case "a":
-		case "e":
-		case "i":
-		case "o":
-		case "u":
-		case "m":
-		case "n":
-		case "h":
-		case "f":
-		case " ":
-		case "!":
-		case "?":
-		case ".":
-		case "~":
-		case "-":
-			break;
 		case "V":
 		case "B":
 		case "C":
@@ -1292,16 +1227,6 @@ function SpeechGarble3(H) {
 			break;
 		case "G":
 			H = "H";
-			break;
-		case "A":
-		case "E":
-		case "I":
-		case "O":
-		case "U":
-		case "M":
-		case "N":
-		case "H":
-		case "F":
 			break;
 
 			// Accents/Latin characters
@@ -1462,27 +1387,6 @@ function SpeechGarble2(H) {
 		case "g":
 			H = "m";
 			break;
-		case "b":
-		case "h":
-		case "n":
-		case "v":
-		case "w":
-		case "p":
-		case "a":
-		case "e":
-		case "i":
-		case "o":
-		case "u":
-		case "y":
-		case " ":
-		case "'":
-		case "?":
-		case "!":
-		case ".":
-		case ",":
-		case "~":
-		case "-":
-			break;
 		case "C":
 		case "T":
 			H = "E";
@@ -1510,19 +1414,6 @@ function SpeechGarble2(H) {
 		case "M":
 		case "G":
 			H = "M";
-			break;
-		case "B":
-		case "H":
-		case "N":
-		case "V":
-		case "W":
-		case "P":
-		case "A":
-		case "E":
-		case "I":
-		case "O":
-		case "U":
-		case "Y":
 			break;
 
 			// Accents/Latin characters
@@ -1560,40 +1451,40 @@ function SpeechGarble2(H) {
 		case "ñ":
 			H = "n";
 			break;
-			case "Á":
-			case "Â":
-			case "À":
-				H = "A";
-				break;
-			case "É":
-			case "Ê":
-			case "È":
-			case "Ë":
-				H = "E";
-				break;
-			case "Í":
-			case "Î":
-			case "Ì":
-			case "Ï":
-				H = "I";
-				break;
-			case "Ó":
-			case "Ô":
-			case "Ò":
-				H = "O";
-				break;
-			case "Ú":
-			case "Û":
-			case "Ù":
-			case "Ü":
-				H = "U";
-				break;
-			case "Ç":
-				H = "S";
-				break;
-			case "Ñ":
-				H = "N";
-				break;
+		case "Á":
+		case "Â":
+		case "À":
+			H = "A";
+			break;
+		case "É":
+		case "Ê":
+		case "È":
+		case "Ë":
+			H = "E";
+			break;
+		case "Í":
+		case "Î":
+		case "Ì":
+		case "Ï":
+			H = "I";
+			break;
+		case "Ó":
+		case "Ô":
+		case "Ò":
+			H = "O";
+			break;
+		case "Ú":
+		case "Û":
+		case "Ù":
+		case "Ü":
+			H = "U";
+			break;
+		case "Ç":
+			H = "S";
+			break;
+		case "Ñ":
+			H = "N";
+			break;
 
 			// Cyrillic characters
 		case "ч":
