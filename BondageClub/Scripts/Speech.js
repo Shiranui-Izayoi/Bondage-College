@@ -1505,9 +1505,6 @@ function SpeechGarble2(H) {
 		case "з":
 			H = "с";
 			break;
-		case "с":
-			H = "з";
-			break;
 		case "Ч":
 		case "Ц":
 			H = "Е";
@@ -1525,9 +1522,6 @@ function SpeechGarble2(H) {
 			break;
 		case "З":
 			H = "С";
-			break;
-		case "С":
-			H = "З";
 			break;
 	}
 	return H;
@@ -1708,9 +1702,6 @@ function SpeechGarble1(H) {
 		case "з":
 			H = "с";
 			break;
-		case "с":
-			H = "з";
-			break;
 		case "Ч":
 		case "Ц":
 			H = "Е";
@@ -1728,9 +1719,6 @@ function SpeechGarble1(H) {
 			break;
 		case "З":
 			H = "С";
-			break;
-		case "С":
-			H = "З";
 			break;
 	}
 	return H;
