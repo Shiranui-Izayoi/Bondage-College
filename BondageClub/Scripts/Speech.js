@@ -434,7 +434,7 @@ function SpeechGarble6(H) {
 		case "ж": case "л": case "р":
 			H = "а";
 			break;
-		case "з": case "с": case "й": 
+		case "з": case "й": 
 			H = "г";
 			break;
 		case "б": case "в": case "ы": 
@@ -452,7 +452,7 @@ function SpeechGarble6(H) {
 		case "Ж": case "Л": case "Р":
 			H = "А";
 			break;
-		case "З": case "С": case "Й": 
+		case "З": case "Й": 
 			H = "Г";
 			break;
 		case "Б": case "В": case "Ы": 
@@ -679,20 +679,14 @@ function SpeechGarble4(H) {
 		case "г": case "к": case "х": 
 			H = "к";
 			break;
-		case "в": case "у": case "ж": case "л": case "р": 
+		case "у": case "ж": case "л": case "р": 
 			H = "а";
 			break;
 		case "с": case "я": 
 			H = "х";
 			break;
-		case "д": case "ф": 
+		case "д":
 			H = "м";
-			break;
-		case "р": 
-			H = "ф";
-			break;
-		case "г": 
-			H = "н";
 			break;
 		case "В": case "Ф": case "Б": case "П": 
 			H = "ФЫ";
@@ -706,14 +700,8 @@ function SpeechGarble4(H) {
 		case "С": case "Я": 
 			H = "Х";
 			break;
-		case "Д": case "Ф": 
+		case "Д":
 			H = "М";
-			break;
-		case "Р": 
-			H = "Ф";
-			break;
-		case "Г": 
-			H = "Н";
 			break;
 	}
 	return H;
@@ -824,20 +812,14 @@ function SpeechGarble3(H) {
 		case "г": case "к": case "х": 
 			H = "к";
 			break;
-		case "в": case "у": case "ж": case "л": case "р": 
+		case "у": case "ж": case "л": case "р": 
 			H = "а";
 			break;
 		case "с": case "я": 
 			H = "х";
 			break;
-		case "д": case "ф": 
+		case "д":
 			H = "м";
-			break;
-		case "р": 
-			H = "ф";
-			break;
-		case "г": 
-			H = "н";
 			break;
 		case "В": case "Ф": case "Б": case "П": 
 			H = "ФЫ";
@@ -845,20 +827,14 @@ function SpeechGarble3(H) {
 		case "Г": case "К": case "Х": 
 			H = "К";
 			break;
-		case "В": case "У": case "Ж": case "Л": case "Р": 
+		case "У": case "Ж": case "Л": case "Р": 
 			H = "А";
 			break;
 		case "С": case "Я": 
 			H = "Х";
 			break;
-		case "Д": case "Ф": 
+		case "Д":
 			H = "М";
-			break;
-		case "Р": 
-			H = "Ф";
-			break;
-		case "Г": 
-			H = "Н";
 			break;
 	}
 	return H;
