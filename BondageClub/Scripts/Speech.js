@@ -318,40 +318,40 @@ function SpeechGarble7(H) {
 			break;
 
 		// Cyrillic characters
-		case "а": case "е": case "и": case "о": case "у": case "ю": case "л": case "я": 
+		case "и": case "о": case "у": case "ю": case "л": case "я": 
 			H = "е";
 			break;
 		case "с": case "й": case "х": 
 			H = "к";
 			break;
-		case "ж": case "к": case "л": case "р": case "у": 
+		case "ж": case "р":
 			H = "а";
 			break;
-		case "з": case "с": case "г": case "й": 
+		case "з":
 			H = "г";
 			break;
-		case "б": case "р": case "в": case "ы": 
+		case "б": case "в": case "ы": 
 			H = "ф";
 			break;
-		case "д": case "ф": case "г": case "н": case "м": 
+		case "д": case "ф": case "н":
 			H = "м";
 			break;
-		case "А": case "Е": case "И": case "О": case "У": case "Ю": case "Л": case "Я": 
+		case "И": case "О": case "У": case "Ю": case "Л": case "Я": 
 			H = "Е";
 			break;
 		case "С": case "Й": case "Х": 
 			H = "К";
 			break;
-		case "Ж": case "К": case "Л": case "Р": case "У": 
+		case "Ж": case "Р": 
 			H = "А";
 			break;
-		case "З": case "С": case "Г": case "Й": 
+		case "З":
 			H = "Г";
 			break;
-		case "Б": case "Р": case "В": case "Ы": 
+		case "Б": case "В": case "Ы": 
 			H = "Ф";
 			break;
-		case "Д": case "Ф": case "Г": case "Н": case "М": 
+		case "Д": case "Ф": case "Н":
 			H = "М";
 			break;
 	}
@@ -431,16 +431,16 @@ function SpeechGarble6(H) {
 		case "с": case "й": case "х": 
 			H = "к";
 			break;
-		case "ж": case "к": case "л": case "р": case "у": 
+		case "ж": case "л": case "р":
 			H = "а";
 			break;
-		case "з": case "с": case "г": case "й": 
+		case "з": case "с": case "й": 
 			H = "г";
 			break;
-		case "б": case "р": case "в": case "ы": 
+		case "б": case "в": case "ы": 
 			H = "ф";
 			break;
-		case "д": case "ф": case "г": case "н": case "м": 
+		case "д": case "н": case "м": 
 			H = "м";
 			break;
 		case "А": case "Е": case "И": case "О": case "У": case "Ю": case "Л": case "Я": 
@@ -449,16 +449,16 @@ function SpeechGarble6(H) {
 		case "С": case "Й": case "Х": 
 			H = "К";
 			break;
-		case "Ж": case "К": case "Л": case "Р": case "У": 
+		case "Ж": case "Л": case "Р":
 			H = "А";
 			break;
-		case "З": case "С": case "Г": case "Й": 
+		case "З": case "С": case "Й": 
 			H = "Г";
 			break;
-		case "Б": case "Р": case "В": case "Ы": 
+		case "Б": case "В": case "Ы": 
 			H = "Ф";
 			break;
-		case "Д": case "Ф": case "Г": case "Н": case "М": 
+		case "Д": case "Н": case "М": 
 			H = "М";
 			break;
 	}
@@ -540,16 +540,16 @@ function SpeechGarble5(H) {
 		case "с": case "й": case "х": 
 			H = "к";
 			break;
-		case "ж": case "к": case "л": case "р": case "у": 
+		case "ж":case "л": case "р":
 			H = "а";
 			break;
-		case "з": case "с": case "г": case "й": 
+		case "з": case "й": 
 			H = "г";
 			break;
 		case "б": case "р": case "в": case "ы": 
 			H = "ф";
 			break;
-		case "д": case "ф": case "г": case "н": case "м": 
+		case "д":case "н":
 			H = "м";
 			break;
 		case "А": case "Е": case "И": case "О": case "У": case "Ю": case "Л": case "Я": 
@@ -558,16 +558,16 @@ function SpeechGarble5(H) {
 		case "С": case "Й": case "Х": 
 			H = "К";
 			break;
-		case "Ж": case "К": case "Л": case "Р": case "У": 
+		case "Ж":case "Л": case "Р":
 			H = "А";
 			break;
-		case "З": case "С": case "Г": case "Й": 
+		case "З": case "Й": 
 			H = "Г";
 			break;
 		case "Б": case "Р": case "В": case "Ы": 
 			H = "Ф";
 			break;
-		case "Д": case "Ф": case "Г": case "Н": case "М": 
+		case "Д": case "Н":
 			H = "М";
 			break;
 	}
@@ -978,7 +978,7 @@ function SpeechGarble2(H) {
 		case "с": 
 			H = "з";
 			break;
-		case "д": case "ф": case "м": case "г": 
+		case "д": case "ф": case "м": 
 			H = "м";
 			break;
 		case "а": case "п": case "р": case "о": case "к": case "е": case "н": case "м": case "и": case "т": 
@@ -998,7 +998,7 @@ function SpeechGarble2(H) {
 		case "С": 
 			H = "З";
 			break;
-		case "Д": case "Ф": case "М": case "Г": 
+		case "Д": case "Ф": case "М": 
 			H = "М";
 			break;
 		case "А": case "П": case "Р": case "О": case "К": case "Е": case "Н": case "М": case "И": case "Т": 
@@ -1103,7 +1103,7 @@ function SpeechGarble1(H) {
 		case "с": 
 			H = "з";
 			break;
-		case "д": case "ф": case "м": case "г": 
+		case "д": case "ф": case "м": 
 			H = "м";
 			break;
 		case "а": case "п": case "р": case "о": case "к": case "е": case "н": case "м": case "и": case "т" : 
@@ -1123,7 +1123,7 @@ function SpeechGarble1(H) {
 		case "С": 
 			H = "З";
 			break;
-		case "Д": case "Ф": case "М": case "Г": 
+		case "Д": case "Ф": case "М": 
 			H = "М";
 			break;
 		case "А": case "П": case "Р": case "О": case "К": case "Е": case "Н": case "М": case "И": case "Т" : 
