@@ -47,7 +47,7 @@ function SpeechGetEffectGagLevel(Effect) {
  * @param {string} AssetGroup - The name of the asset group to look through
  * @returns {number} - Returns the total gag effect of the character's assets
  */
- function SpeechGetGagLevel(C, AssetGroup) {
+function SpeechGetGagLevel(C, AssetGroup) {
 	var GagEffect = 0;
 	for (let i = 0; i < C.Appearance.length; i++) {
 		var item = C.Appearance[i];
@@ -69,7 +69,7 @@ function SpeechGetEffectGagLevel(Effect) {
 function SpeechGetGagEffect(C, NoDeaf) {
 
 	let GagEffect = 0;
-	
+
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth");
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth2");
 	GagEffect += SpeechGetGagLevel(C, "ItemMouth3");
@@ -78,7 +78,7 @@ function SpeechGetGagEffect(C, NoDeaf) {
 	GagEffect += SpeechGetGagLevel(C, "ItemNeck");
 	GagEffect += SpeechGetGagLevel(C, "ItemDevices");
 	GagEffect += SpeechGetGagLevel(C, "ItemHoodAddon");
-	
+
 	if (C.ID != 0 && !NoDeaf) {
 		if (Player.GetDeafLevel() >= 7) GagEffect = Math.max(GagEffect, 20);
 		else if (Player.GetDeafLevel() >= 6) GagEffect = Math.max(GagEffect, 16);
@@ -105,12 +105,12 @@ function SpeechGarble(C, CD, NoDeaf) {
 
 	// The usual preamble - calculate the gag effect level, and the character's deafness level once
 	GagEffect = SpeechGetGagEffect(C, NoDeaf);
-	
+
 	// Makes sure that the gag level is within acceptable parameters. As a GagEffect of more than 20 does nothing. So reduces it if above 20.
 	if (GagEffect > 20) GagEffect = 20;
-	
+
 	// If GagEffect is 0 then there is no need to run this part so, a simple if statement is used in order to check.
-	if (GagEffect > 0)  {
+	if (GagEffect > 0) {
 
 		// This is a function which transforms a single character - one of the `switch` statements
 		const garblingFunction = SpeechGetGarblingFunction(GagEffect);
@@ -120,7 +120,7 @@ function SpeechGarble(C, CD, NoDeaf) {
 	}
 	NS = SpeechStutter(C, NS);
 	NS = SpeechBabyTalk(C, NS);
-	
+
 	return NS;
 
 }
@@ -133,18 +133,27 @@ function SpeechGarble(C, CD, NoDeaf) {
 function SpeechGetGarblingFunction(GagEffect) {
 
 	let CorrectFunction;
-	
-	switch(GagEffect) {
+
+	switch (GagEffect) {
 		case 20:
 			CorrectFunction = SpeechGarble20;
 			break;
-		case 19: case 18: case 17: case 16:
+		case 19:
+		case 18:
+		case 17:
+		case 16:
 			CorrectFunction = SpeechGarble16;
 			break;
-		case 15: case 14: case 13: case 12:
+		case 15:
+		case 14:
+		case 13:
+		case 12:
 			CorrectFunction = SpeechGarble12;
 			break;
-		case 11: case 10: case 9: case 8:
+		case 11:
+		case 10:
+		case 9:
+		case 8:
 			CorrectFunction = SpeechGarble8;
 			break;
 		case 7:
@@ -169,7 +178,7 @@ function SpeechGetGarblingFunction(GagEffect) {
 			CorrectFunction = SpeechGarble1;
 			break;
 	}
-	
+
 	return CorrectFunction;
 }
 
@@ -184,7 +193,7 @@ function SpeechGarbleLine(CD, garblingFunction, IgnoreOOC) {
 	var NS = "";
 	var Par = false;
 	if (CD == null) CD = "";
-	
+
 	for (let L = 0; L < CD.length; L++) {
 		let H = CD.charAt(L);
 		if (H == "(" && !IgnoreOOC) Par = true;
@@ -199,14 +208,54 @@ function SpeechGarbleLine(CD, garblingFunction, IgnoreOOC) {
 /**
  * GagEffect20 always returns mmmmm and muffles some frequent letters entirely, 75% least frequent letters
  */
- function SpeechGarble20(H) {
-	switch(H) {
-		case " ": case ".": case "?": case "!": case "~": case "-": 
+function SpeechGarble20(H) {
+	switch (H) {
+		case " ":
+		case ".":
+		case "?":
+		case "!":
+		case "~":
+		case "-":
 			break;
-		case "z": case "q": case "j": case "x": case "k": case "v": case "b": case "y": case "w": case "g": case "p": case "f": case "u": case "c": case "d": case "l": case "h": case "r": case "Z": case "Q": case "J": case "X": case "K": case "V": case "B": case "Y": case "W": case "G": case "P": case "F": case "U": case "C": case "D": case "L": case "H": case "R": 
+		case "z":
+		case "q":
+		case "j":
+		case "x":
+		case "k":
+		case "v":
+		case "b":
+		case "y":
+		case "w":
+		case "g":
+		case "p":
+		case "f":
+		case "u":
+		case "c":
+		case "d":
+		case "l":
+		case "h":
+		case "r":
+		case "Z":
+		case "Q":
+		case "J":
+		case "X":
+		case "K":
+		case "V":
+		case "B":
+		case "Y":
+		case "W":
+		case "G":
+		case "P":
+		case "F":
+		case "U":
+		case "C":
+		case "D":
+		case "L":
+		case "H":
+		case "R":
 			H = " ";
 			break;
-		default: 
+		default:
 			H = "m";
 			break;
 	}
@@ -217,13 +266,41 @@ function SpeechGarbleLine(CD, garblingFunction, IgnoreOOC) {
  * GagEffect16 always returns mmmmm and muffles some relatively frequent letters entirely, 50% least frequent letters
  */
 function SpeechGarble16(H) {
-	switch(H) {
-		case " ": case ".": case "?": case "!": case "~": case "-": 
+	switch (H) {
+		case " ":
+		case ".":
+		case "?":
+		case "!":
+		case "~":
+		case "-":
 			break;
-		case "z": case "q": case "j": case "x": case "k": case "v": case "b": case "y": case "w": case "g": case "p": case "f": case "Z": case "Q": case "J": case "X": case "K": case "V": case "B": case "Y": case "W": case "G": case "P": case "F": 
+		case "z":
+		case "q":
+		case "j":
+		case "x":
+		case "k":
+		case "v":
+		case "b":
+		case "y":
+		case "w":
+		case "g":
+		case "p":
+		case "f":
+		case "Z":
+		case "Q":
+		case "J":
+		case "X":
+		case "K":
+		case "V":
+		case "B":
+		case "Y":
+		case "W":
+		case "G":
+		case "P":
+		case "F":
 			H = " ";
 			break;
-		default: 
+		default:
 			H = "m";
 			break;
 	}
@@ -234,13 +311,29 @@ function SpeechGarble16(H) {
  * GagEffect12 always returns mmmmm and muffles some less frequent letters entirely; 25% least frequent letters
  */
 function SpeechGarble12(H) {
-	switch(H) {
-		case " ": case ".": case "?": case "!": case "~": case "-": 
+	switch (H) {
+		case " ":
+		case ".":
+		case "?":
+		case "!":
+		case "~":
+		case "-":
 			break;
-		case "z": case "q": case "j": case "x": case "k": case "v": case "Z": case "Q": case "J": case "X": case "K": case "V": 
+		case "z":
+		case "q":
+		case "j":
+		case "x":
+		case "k":
+		case "v":
+		case "Z":
+		case "Q":
+		case "J":
+		case "X":
+		case "K":
+		case "V":
 			H = " ";
 			break;
-		default: 
+		default:
 			H = "m";
 			break;
 	}
@@ -251,10 +344,15 @@ function SpeechGarble12(H) {
  * GagEffect8 always returns mmmmm
  */
 function SpeechGarble8(H) {
-	switch(H) {
-		case " ": case ".": case "?": case "!": case "~": case "-": 
+	switch (H) {
+		case " ":
+		case ".":
+		case "?":
+		case "!":
+		case "~":
+		case "-":
 			break;
-		default: 
+		default:
 			H = "m";
 			break;
 	}
@@ -265,93 +363,199 @@ function SpeechGarble8(H) {
  * GagEffect7 close to no letter stays the same
  */
 function SpeechGarble7(H) {
-	switch(H) {
+	switch (H) {
 
 		// Regular characters
-		case "a": case "e": case "i": case "o": case "u": case "y": 
+		case "a":
+		case "e":
+		case "i":
+		case "o":
+		case "u":
+		case "y":
 			H = "e";
 			break;
-		case "j": case "k": case "l": case "r": 
+		case "j":
+		case "k":
+		case "l":
+		case "r":
 			H = "a";
 			break;
-		case "s": case "z": case "h": 
+		case "s":
+		case "z":
+		case "h":
 			H = "h";
 			break;
-		case "d": case "f": case "g": case "n": case "m": case "w": case "t": case "c": case "q": case "x": case "p": case "v": 
+		case "d":
+		case "f":
+		case "g":
+		case "n":
+		case "m":
+		case "w":
+		case "t":
+		case "c":
+		case "q":
+		case "x":
+		case "p":
+		case "v":
 			H = "m";
 			break;
-		case " ": case ".": case "?": case "!": case "~": case "-": case "b": 
+		case " ":
+		case ".":
+		case "?":
+		case "!":
+		case "~":
+		case "-":
+		case "b":
 			break;
-		case "A": case "E": case "I": case "O": case "U": case "Y": 
+		case "A":
+		case "E":
+		case "I":
+		case "O":
+		case "U":
+		case "Y":
 			H = "E";
 			break;
-		case "J": case "K": case "L": case "R": 
+		case "J":
+		case "K":
+		case "L":
+		case "R":
 			H = "A";
 			break;
-		case "S": case "Z": case "H": 
+		case "S":
+		case "Z":
+		case "H":
 			H = "H";
 			break;
-		case "D": case "F": case "G": case "N": case "M": case "W": case "T": case "C": case "Q": case "X": case "P": case "V": 
+		case "D":
+		case "F":
+		case "G":
+		case "N":
+		case "M":
+		case "W":
+		case "T":
+		case "C":
+		case "Q":
+		case "X":
+		case "P":
+		case "V":
 			H = "M";
 			break;
 		case "B":
 			break;
 
-		// Accents/Latin characters
-		case "á": case "â": case "à": case "é": case "ê": case "è": case "ë": case "í": case "î": case "ì": case "ï": case "ó": case "ô": case "ò": case "ú": case "û": case "ù": case "ü": 
+			// Accents/Latin characters
+		case "á":
+		case "â":
+		case "à":
+		case "é":
+		case "ê":
+		case "è":
+		case "ë":
+		case "í":
+		case "î":
+		case "ì":
+		case "ï":
+		case "ó":
+		case "ô":
+		case "ò":
+		case "ú":
+		case "û":
+		case "ù":
+		case "ü":
 			H = "e";
 			break;
-		case "ç": 
+		case "ç":
 			H = "h";
 			break;
-		case "ñ": 
+		case "ñ":
 			H = "m";
 			break;
-		case "Á": case "Â": case "À": case "É": case "Ê": case "È": case "Ë": case "Í": case "Î": case "Ì": case "Ï": case "Ó": case "Ô": case "Ò": case "Ú": case "Û": case "Ù": case "Ü": 
+		case "Á":
+		case "Â":
+		case "À":
+		case "É":
+		case "Ê":
+		case "È":
+		case "Ë":
+		case "Í":
+		case "Î":
+		case "Ì":
+		case "Ï":
+		case "Ó":
+		case "Ô":
+		case "Ò":
+		case "Ú":
+		case "Û":
+		case "Ù":
+		case "Ü":
 			H = "E";
 			break;
-		case "Ç": 
+		case "Ç":
 			H = "H";
 			break;
-		case "Ñ": 
+		case "Ñ":
 			H = "M";
 			break;
 
-		// Cyrillic characters
-		case "и": case "о": case "у": case "ю": case "л": case "я": 
+			// Cyrillic characters
+		case "и":
+		case "о":
+		case "у":
+		case "ю":
+		case "л":
+		case "я":
 			H = "е";
 			break;
-		case "с": case "й": case "х": 
+		case "с":
+		case "й":
+		case "х":
 			H = "к";
 			break;
-		case "ж": case "р":
+		case "ж":
+		case "р":
 			H = "а";
 			break;
 		case "з":
 			H = "г";
 			break;
-		case "б": case "в": case "ы": 
+		case "б":
+		case "в":
+		case "ы":
 			H = "ф";
 			break;
-		case "д": case "ф": case "н":
+		case "д":
+		case "ф":
+		case "н":
 			H = "м";
 			break;
-		case "И": case "О": case "У": case "Ю": case "Л": case "Я": 
+		case "И":
+		case "О":
+		case "У":
+		case "Ю":
+		case "Л":
+		case "Я":
 			H = "Е";
 			break;
-		case "С": case "Й": case "Х": 
+		case "С":
+		case "Й":
+		case "Х":
 			H = "К";
 			break;
-		case "Ж": case "Р": 
+		case "Ж":
+		case "Р":
 			H = "А";
 			break;
 		case "З":
 			H = "Г";
 			break;
-		case "Б": case "В": case "Ы": 
+		case "Б":
+		case "В":
+		case "Ы":
 			H = "Ф";
 			break;
-		case "Д": case "Ф": case "Н":
+		case "Д":
+		case "Ф":
+		case "Н":
 			H = "М";
 			break;
 	}
@@ -362,103 +566,214 @@ function SpeechGarble7(H) {
  * GagEffect6 almost no letter stays the same
  */
 function SpeechGarble6(H) {
-	switch(H) {
+	switch (H) {
 
 		// Regular characters
-		case "a": case "e": case "i": case "o": case "u": case "y": case "t": 
+		case "a":
+		case "e":
+		case "i":
+		case "o":
+		case "u":
+		case "y":
+		case "t":
 			H = "e";
 			break;
-		case "c": case "q": case "x": 
+		case "c":
+		case "q":
+		case "x":
 			H = "k";
 			break;
-		case "j": case "k": case "l": case "r": case "w": 
+		case "j":
+		case "k":
+		case "l":
+		case "r":
+		case "w":
 			H = "a";
 			break;
-		case "s": case "z": case "h": 
+		case "s":
+		case "z":
+		case "h":
 			H = "h";
 			break;
-		case "b": case "p": case "v": 
+		case "b":
+		case "p":
+		case "v":
 			H = "f";
 			break;
-		case "d": case "f": case "g": case "n": case "m": 
+		case "d":
+		case "f":
+		case "g":
+		case "n":
+		case "m":
 			H = "m";
 			break;
-		case " ": case ".": case "?": case "!": case "~": case "-": 
+		case " ":
+		case ".":
+		case "?":
+		case "!":
+		case "~":
+		case "-":
 			break;
-		case "A": case "E": case "I": case "O": case "U": case "Y": case "T": 
+		case "A":
+		case "E":
+		case "I":
+		case "O":
+		case "U":
+		case "Y":
+		case "T":
 			H = "E";
 			break;
-		case "C": case "Q": case "X": 
+		case "C":
+		case "Q":
+		case "X":
 			H = "K";
 			break;
-		case "J": case "K": case "L": case "R": case "W": 
+		case "J":
+		case "K":
+		case "L":
+		case "R":
+		case "W":
 			H = "A";
 			break;
-		case "S": case "Z": case "H": 
+		case "S":
+		case "Z":
+		case "H":
 			H = "H";
 			break;
-		case "B": case "P": case "V": 
+		case "B":
+		case "P":
+		case "V":
 			H = "F";
 			break;
-		case "D": case "F": case "G": case "N": case "M": 
+		case "D":
+		case "F":
+		case "G":
+		case "N":
+		case "M":
 			H = "M";
 			break;
 
-		// Accents/Latin characters
-		case "á": case "â": case "à": case "é": case "ê": case "è": case "ë": case "í": case "î": case "ì": case "ï": case "ó": case "ô": case "ò": case "ú": case "û": case "ù": case "ü": 
+			// Accents/Latin characters
+		case "á":
+		case "â":
+		case "à":
+		case "é":
+		case "ê":
+		case "è":
+		case "ë":
+		case "í":
+		case "î":
+		case "ì":
+		case "ï":
+		case "ó":
+		case "ô":
+		case "ò":
+		case "ú":
+		case "û":
+		case "ù":
+		case "ü":
 			H = "e";
 			break;
-		case "ç": 
+		case "ç":
 			H = "h";
 			break;
-		case "ñ": 
+		case "ñ":
 			H = "m";
 			break;
-		case "Á": case "Â": case "À": case "É": case "Ê": case "È": case "Ë": case "Í": case "Î": case "Ì": case "Ï": case "Ó": case "Ô": case "Ò": case "Ú": case "Û": case "Ù": case "Ü": 
+		case "Á":
+		case "Â":
+		case "À":
+		case "É":
+		case "Ê":
+		case "È":
+		case "Ë":
+		case "Í":
+		case "Î":
+		case "Ì":
+		case "Ï":
+		case "Ó":
+		case "Ô":
+		case "Ò":
+		case "Ú":
+		case "Û":
+		case "Ù":
+		case "Ü":
 			H = "E";
 			break;
-		case "Ç": 
+		case "Ç":
 			H = "H";
 			break;
-		case "Ñ": 
+		case "Ñ":
 			H = "M";
 			break;
 
-		// Cyrillic characters
-		case "а": case "е": case "и": case "о": case "у": case "ю": case "л": case "я": 
+			// Cyrillic characters
+		case "а":
+		case "е":
+		case "и":
+		case "о":
+		case "у":
+		case "ю":
+		case "л":
+		case "я":
 			H = "е";
 			break;
-		case "с": case "й": case "х": 
+		case "с":
+		case "й":
+		case "х":
 			H = "к";
 			break;
-		case "ж": case "л": case "р":
+		case "ж":
+		case "л":
+		case "р":
 			H = "а";
 			break;
-		case "з": case "й": 
+		case "з":
+		case "й":
 			H = "г";
 			break;
-		case "б": case "в": case "ы": 
+		case "б":
+		case "в":
+		case "ы":
 			H = "ф";
 			break;
-		case "д": case "н": case "м": 
+		case "д":
+		case "н":
+		case "м":
 			H = "м";
 			break;
-		case "А": case "Е": case "И": case "О": case "У": case "Ю": case "Л": case "Я": 
+		case "А":
+		case "Е":
+		case "И":
+		case "О":
+		case "У":
+		case "Ю":
+		case "Л":
+		case "Я":
 			H = "Е";
 			break;
-		case "С": case "Й": case "Х": 
+		case "С":
+		case "Й":
+		case "Х":
 			H = "К";
 			break;
-		case "Ж": case "Л": case "Р":
+		case "Ж":
+		case "Л":
+		case "Р":
 			H = "А";
 			break;
-		case "З": case "Й": 
+		case "З":
+		case "Й":
 			H = "Г";
 			break;
-		case "Б": case "В": case "Ы": 
+		case "Б":
+		case "В":
+		case "Ы":
 			H = "Ф";
 			break;
-		case "Д": case "Н": case "М": 
+		case "Д":
+		case "Н":
+		case "М":
 			H = "М";
 			break;
 	}
@@ -469,105 +784,215 @@ function SpeechGarble6(H) {
  * GagEffect5 some letters stays the same
  */
 function SpeechGarble5(H) {
-	switch(H) {
+	switch (H) {
 
 		// Regular characters
-		case "e": case "i": case "o": case "u": case "y": case "t": 
+		case "e":
+		case "i":
+		case "o":
+		case "u":
+		case "y":
+		case "t":
 			H = "e";
 			break;
-		case "c": case "q": case "x": case "k": 
+		case "c":
+		case "q":
+		case "x":
+		case "k":
 			H = "k";
 			break;
-		case "j": case "l": case "r": case "w": case "a": 
+		case "j":
+		case "l":
+		case "r":
+		case "w":
+		case "a":
 			H = "a";
 			break;
-		case "s": case "z": case "h": 
+		case "s":
+		case "z":
+		case "h":
 			H = "h";
 			break;
-		case "b": case "p": case "v": 
+		case "b":
+		case "p":
+		case "v":
 			H = "f";
 			break;
-		case "d": case "f": case "g": case "m": 
+		case "d":
+		case "f":
+		case "g":
+		case "m":
 			H = "m";
 			break;
-		case "n": case " ": case ".": case "?": case "!": case "~": case "-":
+		case "n":
+		case " ":
+		case ".":
+		case "?":
+		case "!":
+		case "~":
+		case "-":
 			break;
-		case "E": case "I": case "O": case "U": case "Y": case "T": 
+		case "E":
+		case "I":
+		case "O":
+		case "U":
+		case "Y":
+		case "T":
 			H = "E";
 			break;
-		case "C": case "Q": case "X": case "K": 
+		case "C":
+		case "Q":
+		case "X":
+		case "K":
 			H = "K";
 			break;
-		case "J": case "L": case "R": case "W": case "A": 
+		case "J":
+		case "L":
+		case "R":
+		case "W":
+		case "A":
 			H = "A";
 			break;
-		case "S": case "Z": case "H": 
+		case "S":
+		case "Z":
+		case "H":
 			H = "H";
 			break;
-		case "B": case "P": case "V": 
+		case "B":
+		case "P":
+		case "V":
 			H = "F";
 			break;
-		case "D": case "F": case "G": case "M": 
+		case "D":
+		case "F":
+		case "G":
+		case "M":
 			H = "M";
 			break;
-		case "N": 
+		case "N":
 			break;
 
-		// Accents/Latin characters
-		case "á": case "â": case "à": case "é": case "ê": case "è": case "ë": case "í": case "î": case "ì": case "ï": case "ó": case "ô": case "ò": case "ú": case "û": case "ù": case "ü": 
+			// Accents/Latin characters
+		case "á":
+		case "â":
+		case "à":
+		case "é":
+		case "ê":
+		case "è":
+		case "ë":
+		case "í":
+		case "î":
+		case "ì":
+		case "ï":
+		case "ó":
+		case "ô":
+		case "ò":
+		case "ú":
+		case "û":
+		case "ù":
+		case "ü":
 			H = "e";
 			break;
-		case "ç": 
+		case "ç":
 			H = "h";
 			break;
-		case "ñ": 
+		case "ñ":
 			H = "m";
 			break;
-		case "Á": case "Â": case "À": case "É": case "Ê": case "È": case "Ë": case "Í": case "Î": case "Ì": case "Ï": case "Ó": case "Ô": case "Ò": case "Ú": case "Û": case "Ù": case "Ü": 
+		case "Á":
+		case "Â":
+		case "À":
+		case "É":
+		case "Ê":
+		case "È":
+		case "Ë":
+		case "Í":
+		case "Î":
+		case "Ì":
+		case "Ï":
+		case "Ó":
+		case "Ô":
+		case "Ò":
+		case "Ú":
+		case "Û":
+		case "Ù":
+		case "Ü":
 			H = "E";
 			break;
-		case "Ç": 
+		case "Ç":
 			H = "H";
 			break;
-		case "Ñ": 
+		case "Ñ":
 			H = "M";
 			break;
 
-		// Cyrillic characters
-		case "а": case "е": case "и": case "о": case "у": case "ю": case "л": case "я": 
+			// Cyrillic characters
+		case "а":
+		case "е":
+		case "и":
+		case "о":
+		case "у":
+		case "ю":
+		case "л":
+		case "я":
 			H = "е";
 			break;
-		case "с": case "й": case "х": 
+		case "с":
+		case "й":
+		case "х":
 			H = "к";
 			break;
-		case "ж":case "л": case "р":
+		case "ж":
+		case "л":
+		case "р":
 			H = "а";
 			break;
-		case "з": case "й": 
+		case "з":
+		case "й":
 			H = "г";
 			break;
-		case "б": case "р": case "в": case "ы": 
+		case "б":
+		case "р":
+		case "в":
+		case "ы":
 			H = "ф";
 			break;
-		case "д":case "н":
+		case "д":
+		case "н":
 			H = "м";
 			break;
-		case "А": case "Е": case "И": case "О": case "У": case "Ю": case "Л": case "Я": 
+		case "А":
+		case "Е":
+		case "И":
+		case "О":
+		case "У":
+		case "Ю":
+		case "Л":
+		case "Я":
 			H = "Е";
 			break;
-		case "С": case "Й": case "Х": 
+		case "С":
+		case "Й":
+		case "Х":
 			H = "К";
 			break;
-		case "Ж":case "Л": case "Р":
+		case "Ж":
+		case "Л":
+		case "Р":
 			H = "А";
 			break;
-		case "З": case "Й": 
+		case "З":
+		case "Й":
 			H = "Г";
 			break;
-		case "Б": case "Р": case "В": case "Ы": 
+		case "Б":
+		case "Р":
+		case "В":
+		case "Ы":
 			H = "Ф";
 			break;
-		case "Д": case "Н":
+		case "Д":
+		case "Н":
 			H = "М";
 			break;
 	}
@@ -578,126 +1003,213 @@ function SpeechGarble5(H) {
  * GagEffect4 keep vowels and a few letters the same
  */
 function SpeechGarble4(H) {
-	switch(H) {
+	switch (H) {
 
 		// Regular characters
-		case "v": case "b": case "c": case "t": 
+		case "v":
+		case "b":
+		case "c":
+		case "t":
 			H = "e";
 			break;
-		case "q": case "k": case "x": 
+		case "q":
+		case "k":
+		case "x":
 			H = "k";
 			break;
-		case "w": case "y": case "j": case "l": case "r": 
+		case "w":
+		case "y":
+		case "j":
+		case "l":
+		case "r":
 			H = "a";
 			break;
-		case "s": case "z": 
+		case "s":
+		case "z":
 			H = "h";
 			break;
-		case "d": case "f": 
+		case "d":
+		case "f":
 			H = "m";
 			break;
-		case "p": 
+		case "p":
 			H = "f";
 			break;
-		case "g": 
+		case "g":
 			H = "n";
 			break;
-		case "a": case "e": case "i": case "o": case "u": case "m": case "n": case "h": case " ": case "!": case "?": case ".": case "~": case "-":
+		case "a":
+		case "e":
+		case "i":
+		case "o":
+		case "u":
+		case "m":
+		case "n":
+		case "h":
+		case " ":
+		case "!":
+		case "?":
+		case ".":
+		case "~":
+		case "-":
 			break;
-		case "V": case "B": case "C": case "T": 
+		case "V":
+		case "B":
+		case "C":
+		case "T":
 			H = "E";
 			break;
-		case "Q": case "K": case "X": 
+		case "Q":
+		case "K":
+		case "X":
 			H = "K";
 			break;
-		case "W": case "Y": case "J": case "L": case "R": 
+		case "W":
+		case "Y":
+		case "J":
+		case "L":
+		case "R":
 			H = "A";
 			break;
-		case "S": case "Z": 
+		case "S":
+		case "Z":
 			H = "H";
 			break;
-		case "D": case "F": 
+		case "D":
+		case "F":
 			H = "M";
 			break;
-		case "P": 
+		case "P":
 			H = "F";
 			break;
-		case "G": 
+		case "G":
 			H = "N";
 			break;
-		case "A": case "E": case "I": case "O": case "U": case "M": case "N": case "H": 
+		case "A":
+		case "E":
+		case "I":
+		case "O":
+		case "U":
+		case "M":
+		case "N":
+		case "H":
 			break;
 
-		// Accents/Latin characters
-		case "á": case "â": case "à": 
+			// Accents/Latin characters
+		case "á":
+		case "â":
+		case "à":
 			H = "a";
 			break;
-		case "é": case "ê": case "è": case "ë": 
+		case "é":
+		case "ê":
+		case "è":
+		case "ë":
 			H = "e";
 			break;
-		case "í": case "î": case "ì": case "ï": 
+		case "í":
+		case "î":
+		case "ì":
+		case "ï":
 			H = "i";
 			break;
-		case "ó": case "ô": case "ò": 
+		case "ó":
+		case "ô":
+		case "ò":
 			H = "o";
 			break;
-		case "ú": case "û": case "ù": case "ü": 
+		case "ú":
+		case "û":
+		case "ù":
+		case "ü":
 			H = "u";
 			break;
-		case "ç": 
+		case "ç":
 			H = "s";
 			break;
-		case "ñ": 
+		case "ñ":
 			H = "n";
 			break;
-		case "Á": case "Â": case "À": 
+		case "Á":
+		case "Â":
+		case "À":
 			H = "A";
 			break;
-		case "É": case "Ê": case "È": case "Ë": 
+		case "É":
+		case "Ê":
+		case "È":
+		case "Ë":
 			H = "E";
 			break;
-		case "Í": case "Î": case "Ì": case "Ï": 
+		case "Í":
+		case "Î":
+		case "Ì":
+		case "Ï":
 			H = "I";
 			break;
-		case "Ó": case "Ô": case "Ò": 
+		case "Ó":
+		case "Ô":
+		case "Ò":
 			H = "O";
 			break;
-		case "Ú": case "Û": case "Ù": case "Ü": 
+		case "Ú":
+		case "Û":
+		case "Ù":
+		case "Ü":
 			H = "U";
 			break;
-		case "Ç": 
+		case "Ç":
 			H = "S";
 			break;
-		case "Ñ": 
+		case "Ñ":
 			H = "N";
 			break;
 
-		// Cyrillic characters
-		case "в": case "ф": case "б": case "п": 
+			// Cyrillic characters
+		case "в":
+		case "ф":
+		case "б":
+		case "п":
 			H = "фы";
 			break;
-		case "г": case "к": case "х": 
+		case "г":
+		case "к":
+		case "х":
 			H = "к";
 			break;
-		case "у": case "ж": case "л": case "р": 
+		case "у":
+		case "ж":
+		case "л":
+		case "р":
 			H = "а";
 			break;
-		case "с": case "я": 
+		case "с":
+		case "я":
 			H = "х";
 			break;
 		case "д":
 			H = "м";
 			break;
-		case "В": case "Ф": case "Б": case "П": 
+		case "В":
+		case "Ф":
+		case "Б":
+		case "П":
 			H = "ФЫ";
 			break;
-		case "Г": case "К": case "Х": 
+		case "Г":
+		case "К":
+		case "Х":
 			H = "К";
 			break;
-		case "В": case "У": case "Ж": case "Л": case "Р": 
+		case "В":
+		case "У":
+		case "Ж":
+		case "Л":
+		case "Р":
 			H = "А";
 			break;
-		case "С": case "Я": 
+		case "С":
+		case "Я":
 			H = "Х";
 			break;
 		case "Д":
@@ -711,126 +1223,212 @@ function SpeechGarble4(H) {
  * GagEffect3 keep vowels and a some letters the same
  */
 function SpeechGarble3(H) {
-	switch(H) {
+	switch (H) {
 
 		// Regular characters
-		case "v": case "b": case "c": case "t": 
+		case "v":
+		case "b":
+		case "c":
+		case "t":
 			H = "e";
 			break;
-		case "q": case "k": case "x": 
+		case "q":
+		case "k":
+		case "x":
 			H = "k";
 			break;
-		case "w": case "y": case "j": case "l": case "r": 
+		case "w":
+		case "y":
+		case "j":
+		case "l":
+		case "r":
 			H = "a";
 			break;
-		case "s": case "z": 
+		case "s":
+		case "z":
 			H = "s";
 			break;
-		case "d": 
+		case "d":
 			H = "m";
 			break;
-		case "p": 
+		case "p":
 			H = "f";
 			break;
-		case "g": 
+		case "g":
 			H = "h";
 			break;
-		case "a": case "e": case "i": case "o": case "u": case "m": case "n": case "h": case "f": case " ": case "!": case "?": case ".": case "~": case "-":
+		case "a":
+		case "e":
+		case "i":
+		case "o":
+		case "u":
+		case "m":
+		case "n":
+		case "h":
+		case "f":
+		case " ":
+		case "!":
+		case "?":
+		case ".":
+		case "~":
+		case "-":
 			break;
-		case "V": case "B": case "C": case "T": 
+		case "V":
+		case "B":
+		case "C":
+		case "T":
 			H = "E";
 			break;
-		case "Q": case "K": case "X": 
+		case "Q":
+		case "K":
+		case "X":
 			H = "K";
 			break;
-		case "W": case "Y": case "J": case "L": case "R": 
+		case "W":
+		case "Y":
+		case "J":
+		case "L":
+		case "R":
 			H = "A";
 			break;
-		case "S": case "Z": 
+		case "S":
+		case "Z":
 			H = "S";
 			break;
-		case "D": 
+		case "D":
 			H = "M";
 			break;
-		case "P": 
+		case "P":
 			H = "F";
 			break;
-		case "G": 
+		case "G":
 			H = "H";
 			break;
-		case "A": case "E": case "I": case "O": case "U": case "M": case "N": case "H": case "F": 
+		case "A":
+		case "E":
+		case "I":
+		case "O":
+		case "U":
+		case "M":
+		case "N":
+		case "H":
+		case "F":
 			break;
 
-		// Accents/Latin characters
-		case "á": case "â": case "à": 
+			// Accents/Latin characters
+		case "á":
+		case "â":
+		case "à":
 			H = "a";
 			break;
-		case "é": case "ê": case "è": case "ë": 
+		case "é":
+		case "ê":
+		case "è":
+		case "ë":
 			H = "e";
 			break;
-		case "í": case "î": case "ì": case "ï": 
+		case "í":
+		case "î":
+		case "ì":
+		case "ï":
 			H = "i";
 			break;
-		case "ó": case "ô": case "ò": 
+		case "ó":
+		case "ô":
+		case "ò":
 			H = "o";
 			break;
-		case "ú": case "û": case "ù": case "ü": 
+		case "ú":
+		case "û":
+		case "ù":
+		case "ü":
 			H = "u";
 			break;
-		case "ç": 
+		case "ç":
 			H = "s";
 			break;
-		case "ñ": 
+		case "ñ":
 			H = "n";
 			break;
-		case "Á": case "Â": case "À": 
+		case "Á":
+		case "Â":
+		case "À":
 			H = "A";
 			break;
-		case "É": case "Ê": case "È": case "Ë": 
+		case "É":
+		case "Ê":
+		case "È":
+		case "Ë":
 			H = "E";
 			break;
-		case "Í": case "Î": case "Ì": case "Ï": 
+		case "Í":
+		case "Î":
+		case "Ì":
+		case "Ï":
 			H = "I";
 			break;
-		case "Ó": case "Ô": case "Ò": 
+		case "Ó":
+		case "Ô":
+		case "Ò":
 			H = "O";
 			break;
-		case "Ú": case "Û": case "Ù": case "Ü": 
+		case "Ú":
+		case "Û":
+		case "Ù":
+		case "Ü":
 			H = "U";
 			break;
-		case "Ç": 
+		case "Ç":
 			H = "S";
 			break;
-		case "Ñ": 
+		case "Ñ":
 			H = "N";
 			break;
 
-		// Cyrillic characters
-		case "в": case "ф": case "б": case "п": 
+			// Cyrillic characters
+		case "в":
+		case "ф":
+		case "б":
+		case "п":
 			H = "фы";
 			break;
-		case "г": case "к": case "х": 
+		case "г":
+		case "к":
+		case "х":
 			H = "к";
 			break;
-		case "у": case "ж": case "л": case "р": 
+		case "у":
+		case "ж":
+		case "л":
+		case "р":
 			H = "а";
 			break;
-		case "с": case "я": 
+		case "с":
+		case "я":
 			H = "х";
 			break;
 		case "д":
 			H = "м";
 			break;
-		case "В": case "Ф": case "Б": case "П": 
+		case "В":
+		case "Ф":
+		case "Б":
+		case "П":
 			H = "ФЫ";
 			break;
-		case "Г": case "К": case "Х": 
+		case "Г":
+		case "К":
+		case "Х":
 			H = "К";
 			break;
-		case "У": case "Ж": case "Л": case "Р": 
+		case "У":
+		case "Ж":
+		case "Л":
+		case "Р":
 			H = "А";
 			break;
-		case "С": case "Я": 
+		case "С":
+		case "Я":
 			H = "Х";
 			break;
 		case "Д":
@@ -844,140 +1442,244 @@ function SpeechGarble3(H) {
  * GagEffect2 half of the letters stay the same
  */
 function SpeechGarble2(H) {
-	switch(H) {
-		
+	switch (H) {
+
 		// Regular characters
-		case "c": case "t": 
+		case "c":
+		case "t":
 			H = "e";
 			break;
-		case "q": case "k": case "x": 
+		case "q":
+		case "k":
+		case "x":
 			H = "k";
 			break;
-		case "j": case "l": case "r": 
+		case "j":
+		case "l":
+		case "r":
 			H = "a";
 			break;
-		case "s": 
+		case "s":
 			H = "z";
 			break;
-		case "z": 
+		case "z":
 			H = "s";
 			break;
-		case "f": 
+		case "f":
 			H = "h";
 			break;
-		case "d": case "m": case "g": 
+		case "d":
+		case "m":
+		case "g":
 			H = "m";
 			break;
-		case "b": case "h": case "n": case "v": case "w": case "p": case "a": case "e": case "i": case "o": case "u": case "y": case " ": case "'": case "?": case "!": case ".": case ",": case "~": case "-":
-			break;	
-		case "C": case "T": 
+		case "b":
+		case "h":
+		case "n":
+		case "v":
+		case "w":
+		case "p":
+		case "a":
+		case "e":
+		case "i":
+		case "o":
+		case "u":
+		case "y":
+		case " ":
+		case "'":
+		case "?":
+		case "!":
+		case ".":
+		case ",":
+		case "~":
+		case "-":
+			break;
+		case "C":
+		case "T":
 			H = "E";
 			break;
-		case "Q": case "K": case "X": 
+		case "Q":
+		case "K":
+		case "X":
 			H = "K";
 			break;
-		case "J": case "L": case "R": 
+		case "J":
+		case "L":
+		case "R":
 			H = "A";
 			break;
-		case "S": 
+		case "S":
 			H = "Z";
 			break;
-		case "Z": 
+		case "Z":
 			H = "S";
 			break;
-		case "F": 
+		case "F":
 			H = "H";
 			break;
-		case "D": case "M": case "G": 
+		case "D":
+		case "M":
+		case "G":
 			H = "M";
 			break;
-		case "B": case "H": case "N": case "V": case "W": case "P": case "A": case "E": case "I": case "O": case "U": case "Y": 
+		case "B":
+		case "H":
+		case "N":
+		case "V":
+		case "W":
+		case "P":
+		case "A":
+		case "E":
+		case "I":
+		case "O":
+		case "U":
+		case "Y":
 			break;
 
-		// Accents/Latin characters
-		case "á": case "â": case "à": 
+			// Accents/Latin characters
+		case "á":
+		case "â":
+		case "à":
 			H = "a";
 			break;
-		case "é": case "ê": case "è": case "ë": 
+		case "é":
+		case "ê":
+		case "è":
+		case "ë":
 			H = "e";
 			break;
-		case "í": case "î": case "ì": case "ï": 
+		case "í":
+		case "î":
+		case "ì":
+		case "ï":
 			H = "i";
 			break;
-		case "ó": case "ô": case "ò": 
+		case "ó":
+		case "ô":
+		case "ò":
 			H = "o";
 			break;
-		case "ú": case "û": case "ù": case "ü": 
+		case "ú":
+		case "û":
+		case "ù":
+		case "ü":
 			H = "u";
 			break;
-		case "ç": 
+		case "ç":
 			H = "s";
 			break;
-		case "ñ": 
+		case "ñ":
 			H = "n";
 			break;
-		case "á": case "â": case "à": 
+		case "á":
+		case "â":
+		case "à":
 			H = "a";
 			break;
-		case "é": case "ê": case "è": case "ë": 
+		case "é":
+		case "ê":
+		case "è":
+		case "ë":
 			H = "e";
 			break;
-		case "í": case "î": case "ì": case "ï": 
+		case "í":
+		case "î":
+		case "ì":
+		case "ï":
 			H = "i";
 			break;
-		case "ó": case "ô": case "ò": 
+		case "ó":
+		case "ô":
+		case "ò":
 			H = "o";
 			break;
-		case "ú": case "û": case "ù": case "ü": 
+		case "ú":
+		case "û":
+		case "ù":
+		case "ü":
 			H = "u";
 			break;
-		case "ç": 
+		case "ç":
 			H = "s";
 			break;
-		case "ñ": 
+		case "ñ":
 			H = "n";
 			break;
 
-		// Cyrillic characters
-		case "ч": case "ц": 
+			// Cyrillic characters
+		case "ч":
+		case "ц":
 			H = "е";
 			break;
-		case "й": case "ф": case "в": 
+		case "й":
+		case "ф":
+		case "в":
 			H = "к";
 			break;
-		case "д": case "л": case "щ": case "я": 
+		case "д":
+		case "л":
+		case "щ":
+		case "я":
 			H = "а";
 			break;
-		case "з": 
+		case "з":
 			H = "с";
 			break;
-		case "с": 
+		case "с":
 			H = "з";
 			break;
-		case "д": case "ф": case "м": 
+		case "д":
+		case "ф":
+		case "м":
 			H = "м";
 			break;
-		case "а": case "п": case "р": case "о": case "к": case "е": case "н": case "м": case "и": case "т": 
+		case "а":
+		case "п":
+		case "р":
+		case "о":
+		case "к":
+		case "е":
+		case "н":
+		case "м":
+		case "и":
+		case "т":
 			break;
-		case "Ч": case "Ц": 
+		case "Ч":
+		case "Ц":
 			H = "Е";
 			break;
-		case "Й": case "Ф": case "В": 
+		case "Й":
+		case "Ф":
+		case "В":
 			H = "К";
 			break;
-		case "Д": case "Л": case "Щ": case "Я": 
+		case "Д":
+		case "Л":
+		case "Щ":
+		case "Я":
 			H = "А";
 			break;
-		case "З": 
+		case "З":
 			H = "С";
 			break;
-		case "С": 
+		case "С":
 			H = "З";
 			break;
-		case "Д": case "Ф": case "М": 
+		case "Д":
+		case "Ф":
+		case "М":
 			H = "М";
 			break;
-		case "А": case "П": case "Р": case "О": case "К": case "Е": case "Н": case "М": case "И": case "Т": 
+		case "А":
+		case "П":
+		case "Р":
+		case "О":
+		case "К":
+		case "Е":
+		case "Н":
+		case "М":
+		case "И":
+		case "Т":
 			break;
 	}
 	return H;
@@ -986,123 +1688,233 @@ function SpeechGarble2(H) {
 /**
  * GagEffect1 most of the letters stay the same
  */
-function SpeechGarble1(H) {	
-	switch(H) {
+function SpeechGarble1(H) {
+	switch (H) {
 
 		// Regular characters
-		case "t": 
+		case "t":
 			H = "e";
 			break;
-		case "c": case "q": case "k": case "x": 
+		case "c":
+		case "q":
+		case "k":
+		case "x":
 			H = "k";
 			break;
-		case "j": case "l": case "r": 
+		case "j":
+		case "l":
+		case "r":
 			H = "a";
 			break;
-		case "d": case "m": case "g": 
+		case "d":
+		case "m":
+		case "g":
 			H = "m";
 			break;
-		case "b": case "h": case "n": case "v": case "w": case "p": case "a": case "e": case "i": case "o": case "u": case "y": case "f": case "s": case "z": case " ": case "'": case "?": case "!": case ".": case ",": case "~": case "-":
+		case "b":
+		case "h":
+		case "n":
+		case "v":
+		case "w":
+		case "p":
+		case "a":
+		case "e":
+		case "i":
+		case "o":
+		case "u":
+		case "y":
+		case "f":
+		case "s":
+		case "z":
+		case " ":
+		case "'":
+		case "?":
+		case "!":
+		case ".":
+		case ",":
+		case "~":
+		case "-":
 			break;
-		case "T": 
+		case "T":
 			H = "E";
 			break;
-		case "C": case "Q": case "K": case "X": 
+		case "C":
+		case "Q":
+		case "K":
+		case "X":
 			H = "K";
 			break;
-		case "J": case "L": case "R": 
+		case "J":
+		case "L":
+		case "R":
 			H = "A";
 			break;
-		case "D": case "M": case "G": 
+		case "D":
+		case "M":
+		case "G":
 			H = "M";
 			break;
-		case "B": case "H": case "N": case "V": case "W": case "P": case "A": case "E": case "I": case "O": case "U": case "Y": case "F": case "S": case "Z": 
+		case "B":
+		case "H":
+		case "N":
+		case "V":
+		case "W":
+		case "P":
+		case "A":
+		case "E":
+		case "I":
+		case "O":
+		case "U":
+		case "Y":
+		case "F":
+		case "S":
+		case "Z":
 			break;
 
-		// Accents/Latin characters
-		case "á": case "â": case "à": 
+			// Accents/Latin characters
+		case "á":
+		case "â":
+		case "à":
 			H = "a";
 			break;
-		case "é": case "ê": case "è": case "ë": 
+		case "é":
+		case "ê":
+		case "è":
+		case "ë":
 			H = "e";
 			break;
-		case "í": case "î": case "ì": case "ï": 
+		case "í":
+		case "î":
+		case "ì":
+		case "ï":
 			H = "i";
 			break;
-		case "ó": case "ô": case "ò": 
+		case "ó":
+		case "ô":
+		case "ò":
 			H = "o";
 			break;
-		case "ú": case "û": case "ù": case "ü": 
+		case "ú":
+		case "û":
+		case "ù":
+		case "ü":
 			H = "u";
 			break;
-		case "ç": 
+		case "ç":
 			H = "s";
 			break;
-		case "ñ": 
+		case "ñ":
 			H = "n";
 			break;
-		case "Á": case "Â": case "À": 
+		case "Á":
+		case "Â":
+		case "À":
 			H = "A";
 			break;
-		case "É": case "Ê": case "È": case "Ë": 
+		case "É":
+		case "Ê":
+		case "È":
+		case "Ë":
 			H = "E";
 			break;
-		case "Í": case "Î": case "Ì": case "Ï": 
+		case "Í":
+		case "Î":
+		case "Ì":
+		case "Ï":
 			H = "I";
 			break;
-		case "Ó": case "Ô": case "Ò": 
+		case "Ó":
+		case "Ô":
+		case "Ò":
 			H = "O";
 			break;
-		case "Ú": case "Û": case "Ù": case "Ü": 
+		case "Ú":
+		case "Û":
+		case "Ù":
+		case "Ü":
 			H = "U";
 			break;
-		case "Ç": 
+		case "Ç":
 			H = "S";
 			break;
-		case "Ñ": 
+		case "Ñ":
 			H = "N";
 			break;
 
-		// Cyrillic characters
-		case "ч": case "ц": 
+			// Cyrillic characters
+		case "ч":
+		case "ц":
 			H = "е";
 			break;
-		case "й": case "ф": case "в": 
+		case "й":
+		case "ф":
+		case "в":
 			H = "к";
 			break;
-		case "д": case "л": case "щ": case "я": 
+		case "д":
+		case "л":
+		case "щ":
+		case "я":
 			H = "а";
 			break;
-		case "з": 
+		case "з":
 			H = "с";
 			break;
-		case "с": 
+		case "с":
 			H = "з";
 			break;
-		case "д": case "ф": case "м": 
+		case "д":
+		case "ф":
+		case "м":
 			H = "м";
 			break;
-		case "а": case "п": case "р": case "о": case "к": case "е": case "н": case "м": case "и": case "т" : 
+		case "а":
+		case "п":
+		case "р":
+		case "о":
+		case "к":
+		case "е":
+		case "н":
+		case "м":
+		case "и":
+		case "т":
 			break;
-		case "Ч": case "Ц": 
+		case "Ч":
+		case "Ц":
 			H = "Е";
 			break;
-		case "Й": case "Ф": case "В": 
+		case "Й":
+		case "Ф":
+		case "В":
 			H = "К";
 			break;
-		case "Д": case "Л": case "Щ": case "Я": 
+		case "Д":
+		case "Л":
+		case "Щ":
+		case "Я":
 			H = "А";
 			break;
-		case "З": 
+		case "З":
 			H = "С";
 			break;
-		case "С": 
+		case "С":
 			H = "З";
 			break;
-		case "Д": case "Ф": case "М": 
+		case "Д":
+		case "Ф":
+		case "М":
 			H = "М";
 			break;
-		case "А": case "П": case "Р": case "О": case "К": case "Е": case "Н": case "М": case "И": case "Т" : 
+		case "А":
+		case "П":
+		case "Р":
+		case "О":
+		case "К":
+		case "Е":
+		case "Н":
+		case "М":
+		case "И":
+		case "Т":
 			break;
 	}
 	return H;
@@ -1191,11 +2003,13 @@ function SpeechBabyTalk(C, CD, BabyMessage) {
 			var H = CD.charAt(L);
 			if (H == "(") Par = true;
 			if (!Par) {
-				switch(H) {
-					case "k": case "l":
+				switch (H) {
+					case "k":
+					case "l":
 						NS = NS + "w";
 						break;
-					case "K": case "L":
+					case "K":
+					case "L":
 						NS = NS + "W";
 						break;
 					case "s":
