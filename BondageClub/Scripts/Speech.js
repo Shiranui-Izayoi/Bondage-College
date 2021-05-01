@@ -1213,7 +1213,7 @@ function SpeechBabyTalk(C, CD, BabyMessage) {
 	if (C.Effect.indexOf("RegressedTalk") >= 0) {
 		for (let L = 0; L < CD.length; L++) {
 			var H = CD.charAt(L);
-			if (H == "(") Par = true, Bypass = true;
+			if (H == "(") Par = true;
 			if (!Par) {
 				switch(H) {
 					case "k": case "l":
