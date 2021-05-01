@@ -724,12 +724,10 @@ function SpeechGarble6(H) {
 			H = "к";
 			break;
 		case "ж":
-		case "л":
 		case "р":
 			H = "а";
 			break;
 		case "з":
-		case "й":
 			H = "г";
 			break;
 		case "б":
@@ -758,12 +756,10 @@ function SpeechGarble6(H) {
 			H = "К";
 			break;
 		case "Ж":
-		case "Л":
 		case "Р":
 			H = "А";
 			break;
 		case "З":
-		case "Й":
 			H = "Г";
 			break;
 		case "Б":
@@ -943,16 +939,13 @@ function SpeechGarble5(H) {
 			H = "к";
 			break;
 		case "ж":
-		case "л":
 		case "р":
 			H = "а";
 			break;
 		case "з":
-		case "й":
 			H = "г";
 			break;
 		case "б":
-		case "р":
 		case "в":
 		case "ы":
 			H = "ф";
@@ -977,16 +970,13 @@ function SpeechGarble5(H) {
 			H = "К";
 			break;
 		case "Ж":
-		case "Л":
 		case "Р":
 			H = "А";
 			break;
 		case "З":
-		case "Й":
 			H = "Г";
 			break;
 		case "Б":
-		case "Р":
 		case "В":
 		case "Ы":
 			H = "Ф";
@@ -1201,7 +1191,6 @@ function SpeechGarble4(H) {
 		case "Х":
 			H = "К";
 			break;
-		case "В":
 		case "У":
 		case "Ж":
 		case "Л":
@@ -1571,40 +1560,40 @@ function SpeechGarble2(H) {
 		case "ñ":
 			H = "n";
 			break;
-		case "á":
-		case "â":
-		case "à":
-			H = "a";
-			break;
-		case "é":
-		case "ê":
-		case "è":
-		case "ë":
-			H = "e";
-			break;
-		case "í":
-		case "î":
-		case "ì":
-		case "ï":
-			H = "i";
-			break;
-		case "ó":
-		case "ô":
-		case "ò":
-			H = "o";
-			break;
-		case "ú":
-		case "û":
-		case "ù":
-		case "ü":
-			H = "u";
-			break;
-		case "ç":
-			H = "s";
-			break;
-		case "ñ":
-			H = "n";
-			break;
+			case "Á":
+			case "Â":
+			case "À":
+				H = "A";
+				break;
+			case "É":
+			case "Ê":
+			case "È":
+			case "Ë":
+				H = "E";
+				break;
+			case "Í":
+			case "Î":
+			case "Ì":
+			case "Ï":
+				H = "I";
+				break;
+			case "Ó":
+			case "Ô":
+			case "Ò":
+				H = "O";
+				break;
+			case "Ú":
+			case "Û":
+			case "Ù":
+			case "Ü":
+				H = "U";
+				break;
+			case "Ç":
+				H = "S";
+				break;
+			case "Ñ":
+				H = "N";
+				break;
 
 			// Cyrillic characters
 		case "ч":
@@ -1628,22 +1617,6 @@ function SpeechGarble2(H) {
 		case "с":
 			H = "з";
 			break;
-		case "д":
-		case "ф":
-		case "м":
-			H = "м";
-			break;
-		case "а":
-		case "п":
-		case "р":
-		case "о":
-		case "к":
-		case "е":
-		case "н":
-		case "м":
-		case "и":
-		case "т":
-			break;
 		case "Ч":
 		case "Ц":
 			H = "Е";
@@ -1664,22 +1637,6 @@ function SpeechGarble2(H) {
 			break;
 		case "С":
 			H = "З";
-			break;
-		case "Д":
-		case "Ф":
-		case "М":
-			H = "М";
-			break;
-		case "А":
-		case "П":
-		case "Р":
-		case "О":
-		case "К":
-		case "Е":
-		case "Н":
-		case "М":
-		case "И":
-		case "Т":
 			break;
 	}
 	return H;
@@ -1863,22 +1820,6 @@ function SpeechGarble1(H) {
 		case "с":
 			H = "з";
 			break;
-		case "д":
-		case "ф":
-		case "м":
-			H = "м";
-			break;
-		case "а":
-		case "п":
-		case "р":
-		case "о":
-		case "к":
-		case "е":
-		case "н":
-		case "м":
-		case "и":
-		case "т":
-			break;
 		case "Ч":
 		case "Ц":
 			H = "Е";
@@ -1899,22 +1840,6 @@ function SpeechGarble1(H) {
 			break;
 		case "С":
 			H = "З";
-			break;
-		case "Д":
-		case "Ф":
-		case "М":
-			H = "М";
-			break;
-		case "А":
-		case "П":
-		case "Р":
-		case "О":
-		case "К":
-		case "Е":
-		case "Н":
-		case "М":
-		case "И":
-		case "Т":
 			break;
 	}
 	return H;
