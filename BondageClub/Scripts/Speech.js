@@ -183,6 +183,16 @@ function SpeechGetGarblingFunction(GagEffect) {
 }
 
 /**
+ * This is to keep functionality with the chat room muffle with thanks to Ellie for the suggestion.
+ * @param {Int} GagEffect - The gag level of the speech
+ * @param {string} CD - The character's dialog to alter
+ */
+function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
+    const garblingFunction = SpeechGetGarblingFunction(GagEffect);
+    return SpeechGarbleLine(CD, garblingFunction, IgnoreOOC);
+}
+
+/**
  * This runs the for loop that actually garbles the text and returns NS when done to SpeechGarble.
  * @param {CD} The message itself.
  * @param {garblingFunction} The string that tells which function to run.
