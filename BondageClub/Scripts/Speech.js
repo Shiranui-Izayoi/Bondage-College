@@ -106,9 +106,6 @@ function SpeechGarble(C, CD, NoDeaf) {
 	// The usual preamble - calculate the gag effect level, and the character's deafness level once
 	GagEffect = SpeechGetGagEffect(C, NoDeaf);
 
-	// Makes sure that the gag level is within acceptable parameters. As a GagEffect of more than 20 does nothing. So reduces it if above 20.
-	if (GagEffect > 20) GagEffect = 20;
-
 	// If GagEffect is 0 then there is no need to run this part so, a simple if statement is used in order to check.
 	if (GagEffect > 0) {
 
@@ -131,6 +128,9 @@ function SpeechGarble(C, CD, NoDeaf) {
  * @returns {string} - Returns the correct garbling function to run.
  */
 function SpeechGetGarblingFunction(GagEffect) {
+	
+	// Makes sure that the gag level is within acceptable parameters. As a GagEffect of more than 20 does nothing, but for this function above 20 will break it.
+	if (GagEffect > 20) GagEffect = 20;
 
 	let CorrectFunction;
 
