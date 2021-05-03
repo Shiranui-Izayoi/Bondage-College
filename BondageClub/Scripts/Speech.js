@@ -106,11 +106,8 @@ function SpeechGarble(C, CD, NoDeaf) {
 	// The usual preamble - calculate the gag effect level, and the character's deafness level once
 	GagEffect = SpeechGetGagEffect(C, NoDeaf);
 
-	// If GagEffect is 0 then there is no need to run this part so, a simple if statement is used in order to check.
-	if (GagEffect > 0) {
+	NS = SpeechGarbleByGagLevel(GagEffect, CD);
 
-		NS = SpeechGarbleByGagLevel(GagEffect, CD);
-	}
 	NS = SpeechStutter(C, NS);
 	NS = SpeechBabyTalk(C, NS);
 
@@ -124,7 +121,7 @@ function SpeechGarble(C, CD, NoDeaf) {
  * @returns {string} - Returns the correct garbling function to run.
  */
 function SpeechGetGarblingFunction(GagEffect) {
-	
+
 	// Makes sure that the gag level is within acceptable parameters. As a GagEffect of more than 20 does nothing, but for this function above 20 will break it.
 	if (GagEffect > 20) GagEffect = 20;
 
@@ -169,6 +166,8 @@ function SpeechGetGarblingFunction(GagEffect) {
  * @param {string} CD - The character's dialog to alter
  */
 function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
+
+	// If GagEffect is 0 then there is no need to run this part so, a simple if statement is used in order to check and prevent errors.
 	if (GagEffect > 0) {
 		const garblingFunction = SpeechGetGarblingFunction(GagEffect);
 		return SpeechGarbleLine(CD, garblingFunction, IgnoreOOC);
@@ -433,7 +432,7 @@ function SpeechGarble7(H) {
 			H = "";
 			break;
 
-		// Regular characters
+			// Regular characters
 		case "a":
 		case "e":
 		case "i":
@@ -627,7 +626,7 @@ function SpeechGarble7(H) {
  */
 function SpeechGarble6(H) {
 	switch (H) {
-		
+
 		case 9:
 		case 8:
 		case 7:
@@ -641,7 +640,7 @@ function SpeechGarble6(H) {
 			H = "";
 			break;
 
-		// Regular characters
+			// Regular characters
 		case "a":
 		case "e":
 		case "i":
@@ -847,7 +846,7 @@ function SpeechGarble6(H) {
  */
 function SpeechGarble5(H) {
 	switch (H) {
-		
+
 		case 9:
 		case 8:
 		case 7:
@@ -861,7 +860,7 @@ function SpeechGarble5(H) {
 			H = "";
 			break;
 
-		// Regular characters
+			// Regular characters
 		case "e":
 		case "i":
 		case "o":
@@ -1077,7 +1076,7 @@ function SpeechGarble4(H) {
 			H = "";
 			break;
 
-		// Regular characters
+			// Regular characters
 		case "v":
 		case "b":
 		case "c":
@@ -1285,7 +1284,7 @@ function SpeechGarble3(H) {
 			H = "";
 			break;
 
-		// Regular characters
+			// Regular characters
 		case "v":
 		case "b":
 		case "c":
@@ -1491,7 +1490,7 @@ function SpeechGarble2(H) {
 			H = "";
 			break;
 
-		// Regular characters
+			// Regular characters
 		case "c":
 		case "t":
 			H = "e";
@@ -1679,7 +1678,7 @@ function SpeechGarble1(H) {
 			H = "";
 			break;
 
-		// Regular characters
+			// Regular characters
 		case "t":
 			H = "e";
 			break;
