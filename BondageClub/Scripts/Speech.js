@@ -176,7 +176,7 @@ function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
 /**
  * This runs the for loop that actually garbles the text and returns NS when done to SpeechGarble.
  * @param {string} CD - The string to garble.
- * @param {garblingFunction} The string that tells which function to run.
+ * @param {function} garblingFunction - The garbling function to run over each character in the message.
  * @returns {string} - Returns the dialog after garbling was processed.
  */
 function SpeechGarbleLine(CD, garblingFunction, IgnoreOOC) {
