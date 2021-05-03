@@ -109,11 +109,7 @@ function SpeechGarble(C, CD, NoDeaf) {
 	// If GagEffect is 0 then there is no need to run this part so, a simple if statement is used in order to check.
 	if (GagEffect > 0) {
 
-		// This is a function which transforms a single character - one of the `switch` statements
-		const garblingFunction = SpeechGetGarblingFunction(GagEffect);
-
-		// This encapsulates the `for` loop logic - it runs over each character and runs the garbling function on it
-		NS = SpeechGarbleLine(CD, garblingFunction);
+		NS = SpeechGarbleByGagLevel(GagEffect, CD);
 	}
 	NS = SpeechStutter(C, NS);
 	NS = SpeechBabyTalk(C, NS);
@@ -132,58 +128,43 @@ function SpeechGetGarblingFunction(GagEffect) {
 	// Makes sure that the gag level is within acceptable parameters. As a GagEffect of more than 20 does nothing, but for this function above 20 will break it.
 	if (GagEffect > 20) GagEffect = 20;
 
-	let CorrectFunction;
-
 	switch (GagEffect) {
 		case 20:
-			CorrectFunction = SpeechGarble20;
-			break;
+			return SpeechGarble20;
 		case 19:
 		case 18:
 		case 17:
 		case 16:
-			CorrectFunction = SpeechGarble16;
-			break;
+			return SpeechGarble16;
 		case 15:
 		case 14:
 		case 13:
 		case 12:
-			CorrectFunction = SpeechGarble12;
-			break;
+			return SpeechGarble12;
 		case 11:
 		case 10:
 		case 9:
 		case 8:
-			CorrectFunction = SpeechGarble8;
-			break;
+			return SpeechGarble8;
 		case 7:
-			CorrectFunction = SpeechGarble7;
-			break;
+			return SpeechGarble7;
 		case 6:
-			CorrectFunction = SpeechGarble6;
-			break;
+			return SpeechGarble6;
 		case 5:
-			CorrectFunction = SpeechGarble5;
-			break;
+			return SpeechGarble5;
 		case 4:
-			CorrectFunction = SpeechGarble4;
-			break;
+			return SpeechGarble4;
 		case 3:
-			CorrectFunction = SpeechGarble3;
-			break;
+			return SpeechGarble3;
 		case 2:
-			CorrectFunction = SpeechGarble2;
-			break;
+			return SpeechGarble2;
 		case 1:
-			CorrectFunction = SpeechGarble1;
-			break;
+			return SpeechGarble1;
 	}
-
-	return CorrectFunction;
 }
 
 /**
- * This is to keep functionality with the chat room muffle with thanks to Ellie for the suggestion.
+ * Garbles a line of text based on the provided gag effect level.
  * @param {Int} GagEffect - The gag level of the speech
  * @param {string} CD - The character's dialog to alter
  */
@@ -1845,7 +1826,7 @@ function SpeechBabyTalk(C, CD, BabyMessage) {
 			} else NS = NS + CD.charAt(L);
 			if (H == ")") Par = false;
 		}
-		return NS.replace(/thh/g, "th").replace(/Thh/g, "Th").replace(/shh/g, "sh").replace(/Shh/g, "Sh");
+		return NS.replace(/([TSts])hh/g, "$1h");
 	}
 
 	// Not drunk the milk, we return the regular text
