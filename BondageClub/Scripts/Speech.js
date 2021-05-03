@@ -207,6 +207,9 @@ function SpeechGarble20(H) {
 		case "!":
 		case "~":
 		case "-":
+		case "+":
+		case "\\":
+		case "/":
 			break;
 		case "z":
 		case "q":
@@ -246,6 +249,18 @@ function SpeechGarble20(H) {
 		case "R":
 			H = " ";
 			break;
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+		case 0:
+			H = "";
+			break;
 		default:
 			H = "m";
 			break;
@@ -264,6 +279,9 @@ function SpeechGarble16(H) {
 		case "!":
 		case "~":
 		case "-":
+		case "+":
+		case "\\":
+		case "/":
 			break;
 		case "z":
 		case "q":
@@ -291,6 +309,18 @@ function SpeechGarble16(H) {
 		case "F":
 			H = " ";
 			break;
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+		case 0:
+			H = "";
+			break;
 		default:
 			H = "m";
 			break;
@@ -309,6 +339,9 @@ function SpeechGarble12(H) {
 		case "!":
 		case "~":
 		case "-":
+		case "+":
+		case "\\":
+		case "/":
 			break;
 		case "z":
 		case "q":
@@ -323,6 +356,18 @@ function SpeechGarble12(H) {
 		case "K":
 		case "V":
 			H = " ";
+			break;
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+		case 0:
+			H = "";
 			break;
 		default:
 			H = "m";
@@ -342,6 +387,21 @@ function SpeechGarble8(H) {
 		case "!":
 		case "~":
 		case "-":
+		case "+":
+		case "\\":
+		case "/":
+			break;
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+		case 0:
+			H = "";
 			break;
 		default:
 			H = "m";
@@ -355,6 +415,19 @@ function SpeechGarble8(H) {
  */
 function SpeechGarble7(H) {
 	switch (H) {
+
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+		case 0:
+			H = "";
+			break;
 
 		// Regular characters
 		case "a":
@@ -550,6 +623,19 @@ function SpeechGarble7(H) {
  */
 function SpeechGarble6(H) {
 	switch (H) {
+		
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+		case 0:
+			H = "";
+			break;
 
 		// Regular characters
 		case "a":
@@ -757,6 +843,19 @@ function SpeechGarble6(H) {
  */
 function SpeechGarble5(H) {
 	switch (H) {
+		
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+		case 0:
+			H = "";
+			break;
 
 		// Regular characters
 		case "e":
@@ -961,6 +1060,19 @@ function SpeechGarble5(H) {
 function SpeechGarble4(H) {
 	switch (H) {
 
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+		case 0:
+			H = "";
+			break;
+
 		// Regular characters
 		case "v":
 		case "b":
@@ -1156,6 +1268,19 @@ function SpeechGarble4(H) {
 function SpeechGarble3(H) {
 	switch (H) {
 
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+		case 0:
+			H = "";
+			break;
+
 		// Regular characters
 		case "v":
 		case "b":
@@ -1349,6 +1474,19 @@ function SpeechGarble3(H) {
 function SpeechGarble2(H) {
 	switch (H) {
 
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+		case 0:
+			H = "";
+			break;
+
 		// Regular characters
 		case "c":
 		case "t":
@@ -1523,6 +1661,19 @@ function SpeechGarble2(H) {
  */
 function SpeechGarble1(H) {
 	switch (H) {
+
+		case 9:
+		case 8:
+		case 7:
+		case 6:
+		case 5:
+		case 4:
+		case 3:
+		case 2:
+		case 1:
+		case 0:
+			H = "";
+			break;
 
 		// Regular characters
 		case "t":
