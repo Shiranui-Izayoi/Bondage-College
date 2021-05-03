@@ -120,7 +120,7 @@ function SpeechGarble(C, CD, NoDeaf) {
 
 /**
  * Chooses the correct function to run via a switch statement and returns it when found.
- * @param {GagEffect} The already caculated value that is used to determine the correct function.
+ * @param {number} GagEffect - The gag effect level that is used to determine the correct garbling function.
  * @returns {string} - Returns the correct garbling function to run.
  */
 function SpeechGetGarblingFunction(GagEffect) {
