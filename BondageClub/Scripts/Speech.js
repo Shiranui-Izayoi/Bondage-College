@@ -169,8 +169,12 @@ function SpeechGetGarblingFunction(GagEffect) {
  * @param {string} CD - The character's dialog to alter
  */
 function SpeechGarbleByGagLevel(GagEffect, CD, IgnoreOOC) {
-    const garblingFunction = SpeechGetGarblingFunction(GagEffect);
-    return SpeechGarbleLine(CD, garblingFunction, IgnoreOOC);
+	if (GagEffect > 0) {
+		const garblingFunction = SpeechGetGarblingFunction(GagEffect);
+		return SpeechGarbleLine(CD, garblingFunction, IgnoreOOC);
+	} else {
+		return CD;
+	}
 }
 
 /**
