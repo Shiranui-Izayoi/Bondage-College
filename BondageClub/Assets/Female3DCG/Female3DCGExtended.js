@@ -760,7 +760,6 @@ var AssetFemale3DCGExtended = {
 		StraitLeotard: {
 			Archetype: ExtendedArchetype.MODULAR,
 			Config: {
-				ChatSetting: ModularItemChatSetting.PER_MODULE,
 				Modules: [
 					{
 						Name: "Cloth", Key: "cl",
