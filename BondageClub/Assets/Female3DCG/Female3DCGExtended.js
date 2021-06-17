@@ -808,6 +808,9 @@ var AssetFemale3DCGExtended = {
 							}
 						], // Opacity
 					},
+					{
+						Name: "FaceStyle", Key: "fs",
+						Options: [{Property: { Hide: ["Glasses", "ItemMouth", "ItemMouth2", "ItemMouth3", "Mask"], HideItem: ["ItemHeadSnorkel"], Block: ["ItemMouth", "ItemMouth2", "ItemMouth3", "ItemHead", "ItemNose", "ItemEars"] }}, {}],
 				],
 				ChangeWhenLocked: false,
 			},
