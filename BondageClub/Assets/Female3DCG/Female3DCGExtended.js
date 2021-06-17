@@ -757,6 +757,31 @@ var AssetFemale3DCGExtended = {
 				],
 			}
 		}, // SturdyLeatherBelts
+		StraitLeotard: {
+			Archetype: ExtendedArchetype.MODULAR,
+			Config: {
+				ChatSetting: ModularItemChatSetting.PER_MODULE,
+				Modules: [
+					{
+						Name: "Cloth", Key: "cl",
+						Options: [{Property: { Hide: ["Cloth"] }}, {}], // All options are merely cosmetic
+					},
+					{
+						Name: "Corset", Key: "co",
+						Options: [{Property: { Hide: ["Corset"] }}, {}], // All options are merely cosmetic,
+					},
+					{
+						Name: "NipplesPiercings", Key: "np",
+						Options: [{Property: { Hide: ["ItemNipplesPiercings"] }}, {}], // All options are merely cosmetic,
+					},
+					{
+						Name: "VulvaPiercings", Key: "vp",
+						Options: [{Property: { Hide: ["ItemVulvaPiercings"] }}, {}], // All options are merely cosmetic,
+					},
+				],
+				ChangeWhenLocked: false,
+			},
+		}, // StraitLeotard
 	}, // ItemArms
 	ItemNeck: {
 		ShinySteelCollar: {
