@@ -763,19 +763,19 @@ var AssetFemale3DCGExtended = {
 				Modules: [
 					{
 						Name: "Cloth", Key: "cl",
-						Options: [{Property: { Hide: ["Cloth"] }}, {}], // All options are merely cosmetic
+						Options: [{Property: { Hide: ["Cloth"] }}, {}],
 					},
 					{
 						Name: "Corset", Key: "co",
-						Options: [{Property: { Hide: ["Corset"] }}, {}], // All options are merely cosmetic,
+						Options: [{Property: { Hide: ["Corset"] }}, {}],
 					},
 					{
 						Name: "NipplesPiercings", Key: "np",
-						Options: [{Property: { Hide: ["ItemNipplesPiercings"] }}, {}], // All options are merely cosmetic,
+						Options: [{Property: { Hide: ["ItemNipplesPiercings"] }}, {}],
 					},
 					{
 						Name: "VulvaPiercings", Key: "vp",
-						Options: [{Property: { Hide: ["ItemVulvaPiercings"] }}, {}], // All options are merely cosmetic,
+						Options: [{Property: { Hide: ["ItemVulvaPiercings"] }}, {}],
 					},
 				],
 				ChangeWhenLocked: false,
